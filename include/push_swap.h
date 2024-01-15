@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/12 16:24:49 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/15 11:08:55 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ typedef struct s_stack_node
 	struct s_stack_node		*prev;
 	struct s_stack_node		*next;
 }				t_stack_node;
+
+t_stack_node	*append_node(t_stack_node **head, int value);
 
 #endif
