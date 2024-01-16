@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/16 14:38:23 by lmerveil         ###   ########.fr       */
+/*   Created: 2024/01/16 10:35:24 by lmerveil          #+#    #+#             */
+/*   Updated: 2024/01/16 15:16:42 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft.h"
-# include <limits.h>
-# include <stdlib.h>
-
-typedef struct s_stack_node
+int	check_num(char *str, int size)
 {
-	int					value;
-	struct s_stack_node	*prev;
-	struct s_stack_node	*next;
-}						t_stack_node;
+	int	j;
 
-t_stack_node			*append_node(t_stack_node **head, int value);
-int						check_num(char *str, int size);
-
-#endif
+	j = 0;
+	while (str[j] && j < size)
+	{
+		if ((str[j] == '-' || str[j] == '+'))
+			j++;
+		if (ft_isdigit(str[j]))
+		{
+			j++;
+			printf("is integer: %d", str[j]);
+		}
+		else
+		{
+			printf("input not integer format: %c\n", str[j]);
+			return (0);
+		}
+	}
+	return (1);
+}

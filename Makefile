@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 11:17:41 by louismdv          #+#    #+#              #
-#    Updated: 2024/01/15 11:31:05 by louismdv         ###   ########.fr        #
+#    Updated: 2024/01/16 10:57:31 by lmerveil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 		= 	push_swap.a
 EXECUTABLE	= 	push_swap
 
 CC 			= 	cc
-CFLAGS 		= 	-Wall -Wextra -Werror -I include -g
+CFLAGS 		= 	-Wall -Wextra -Werror -I include
 
 RED			= 	$(shell tput setaf 1)
 GREEN		= 	$(shell tput setaf 2)
@@ -28,37 +28,39 @@ LIBFT_LIB	=	$(LIBFT_PATH)/$(LIBFT_FILE)
 SRCS		 = 	$(addsuffix .c,		\
 				$(addprefix srcs/, 	\
 				parsing 			\
+				check_input			\
 				))
 
 OFILES		= 	$(SRCS:.c=.o)
 
 .c.o:
-	@$(CC) $(CFLAGS) -c $< -o $@ 
-	@echo "$(GREEN)[$(CC)]$(NC) compilation: $(YELLOW)$<$(NC)\r\c"
+	$(CC) $(CFLAGS) -c $< -o $@
+	@echo -ne "$(GREEN)[$(CC)]$(NC) compilation: $(YELLOW)$<$(NC)\r\c"
+
 
 all: 	$(EXECUTABLE)
 
 ${LIBFT_LIB}:
-	@make -C $(LIBFT_PATH) 
+	@make -C $(LIBFT_PATH) -s
 	@cp $(LIBFT_LIB) ./$(NAME)
 	@echo "$(GREEN)[LIBFT Library]$(NC) copying to: $(YELLOW)$(NAME)$(NC)"
 
 $(EXECUTABLE): $(LIBFT_LIB) $(OFILES)
-	@$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $^ -o $@ -L./libft -lft -s
 	@echo "$(GREEN)[Executable]$(NC) created successfully: $(YELLOW)$(EXECUTABLE)$(NC)"
 
 $(NAME): ${LIBFT_LIB} $(OFILES)
-	@ar rcs $(NAME) $(OFILES)
+	@ar rcs $(NAME) $(OFILES) -s
 	@echo "$(GREEN)[PUSH_SWAP Library]$(NC) created successfully: $(YELLOW)$(NAME)$(NC)"
 
 clean:
-	@make clean -C $(LIBFT_PATH)
+	@make clean -C $(LIBFT_PATH) -s
 	@rm -f $(OFILES)
 	@echo "$(RED)[clean]$(NC) deleting OFILES: $(YELLOW)$(OFILES)$(NC)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@make fclean -C $(LIBFT_PATH)
+	@make fclean -C $(LIBFT_PATH) -s
 	@rm -f $(EXECUTABLE)
 	@echo "$(RED)[fclean]$(NC) deleting library: $(YELLOW)$(NAME)$(NC)"
 
