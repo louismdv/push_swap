@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+         #
+#    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 11:17:41 by louismdv          #+#    #+#              #
-#    Updated: 2024/01/16 10:57:31 by lmerveil         ###   ########.fr        #
+#    Updated: 2024/01/19 20:28:58 by louismdv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,15 +27,26 @@ LIBFT_LIB	=	$(LIBFT_PATH)/$(LIBFT_FILE)
 
 SRCS		 = 	$(addsuffix .c,		\
 				$(addprefix srcs/, 	\
-				parsing 			\
 				check_input			\
+				ft_atol				\
+				ft_parse			\
+				ft_parse_quoted		\
+				ft_parse_int		\
+				init_lst			\
+				ft_new_node			\
+				ft_add_back			\
+				operations			\
+				lst_utils			\
+				ft_3sort			\
+				ft_utils			\
+				algorithm			\
 				))
 
 OFILES		= 	$(SRCS:.c=.o)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
-	@echo -ne "$(GREEN)[$(CC)]$(NC) compilation: $(YELLOW)$<$(NC)\r\c"
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo -n "$(GREEN)[$(CC)]$(NC) compilation: $(YELLOW)$<$(NC)\r\c"
 
 
 all: 	$(EXECUTABLE)
@@ -46,7 +57,7 @@ ${LIBFT_LIB}:
 	@echo "$(GREEN)[LIBFT Library]$(NC) copying to: $(YELLOW)$(NAME)$(NC)"
 
 $(EXECUTABLE): $(LIBFT_LIB) $(OFILES)
-	@$(CC) $(CFLAGS) $^ -o $@ -L./libft -lft -s
+	@$(CC) $(CFLAGS) $^ -o $@ -L./libft -lft
 	@echo "$(GREEN)[Executable]$(NC) created successfully: $(YELLOW)$(EXECUTABLE)$(NC)"
 
 $(NAME): ${LIBFT_LIB} $(OFILES)

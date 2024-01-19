@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:35:24 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/01/16 15:16:42 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:11:15 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,48 @@ int	check_num(char *str, int size)
 	j = 0;
 	while (str[j] && j < size)
 	{
-		if ((str[j] == '-' || str[j] == '+'))
+		if (str[j] == '-' || str[j] == '+' || str[j] == ' ')
 			j++;
-		if (ft_isdigit(str[j]))
-		{
+		else if (ft_isdigit(str[j]))
 			j++;
-			printf("is integer: %d", str[j]);
-		}
 		else
-		{
-			printf("input not integer format: %c\n", str[j]);
-			return (0);
-		}
+			{printf("not digit\n");
+			return (0);}
 	}
 	return (1);
 }
+
+int	check_dup(int *tab, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{ 
+			if(tab[j] == ' ' || tab[i] == ' ')
+				j++;
+			if (tab[i] == tab[j])
+				{printf("dup\n");
+				return (0);}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+// int	main(int ac, char *av[])
+// {
+// 	if (ac != 2)
+// 		return (0);
+// 	if (check_num(av[1], ft_strlen(av[1])) != 1)
+// 		printf("not integer\n");
+// 	else
+// 		printf("integer\n");
+// 	return (0);
+// }
