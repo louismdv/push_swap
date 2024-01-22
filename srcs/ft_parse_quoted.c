@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_quoted.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:58:33 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/18 09:52:28 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:52:44 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 // This func counts the # of ints in the string.
 int	count_int(char *str)
 {
-	int	j = 0;
-	int	nums = 0;
+	int	j;
+	int	nums;
 
-	while(str[j])
+	j = 0;
+	nums = 0;
+	while (str[j])
 	{
-		if (str[j] >= '0' && str[j] <= '9' && (str[j + 1] == ' ' || str[j + 1] == '\0'))
+		if (str[j] >= '0' && str[j] <= '9' && (str[j + 1] == ' ' || str[j
+				+ 1] == '\0'))
 			nums++;
 		j++;
 	}
-	return(nums);
+	return (nums);
 }
 
 // This func does 3 things:
@@ -33,10 +36,10 @@ int	count_int(char *str)
 // 3. It creates a list of ints from the input.
 t_stack	*ft_parse_quoted(char **av)
 {
-	int			j;
-	int			*tab;
-	t_stack		*stack_a;
-	int			nums;
+	int		j;
+	int		*tab;
+	t_stack	*stack_a;
+	int		nums;
 
 	tab = NULL;
 	stack_a = NULL;
@@ -47,7 +50,7 @@ t_stack	*ft_parse_quoted(char **av)
 		return (stack_a);
 	nums = count_int(av[1]);
 	av = ft_split(av[1], ' ');
-	j = 0; 
+	j = 0;
 	while (j <= nums && av[j])
 	{
 		tab[j] = ft_atol(av[j]);
@@ -57,5 +60,5 @@ t_stack	*ft_parse_quoted(char **av)
 		return (stack_a);
 	list_args(tab, &stack_a, nums);
 	free(tab);
-	return(stack_a);
+	return (stack_a);
 }

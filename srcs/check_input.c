@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:35:24 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/01/17 16:11:15 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/22 10:49:11 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	check_num(char *str, int size)
 		else if (ft_isdigit(str[j]))
 			j++;
 		else
-			{printf("not digit\n");
-			return (0);}
+		{
+			printf("not digit\n");
+			return (0);
+		}
 	}
 	return (1);
 }
@@ -41,12 +43,14 @@ int	check_dup(int *tab, int size)
 	{
 		j = i + 1;
 		while (j < size)
-		{ 
-			if(tab[j] == ' ' || tab[i] == ' ')
+		{
+			if (tab[j] == ' ' || tab[i] == ' ')
 				j++;
 			if (tab[i] == tab[j])
-				{printf("dup\n");
-				return (0);}
+			{
+				printf("dup\n");
+				return (0);
+			}
 			j++;
 		}
 		i++;
