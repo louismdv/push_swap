@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/23 10:59:03 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:13:01 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_stack
 	int				push_cost;
 	bool			above_median;
 	bool			cheapest;
+	int				target_index;
 	struct s_stack	*target_node;
 	struct s_stack	*prev;
 }					t_stack;
@@ -65,5 +66,6 @@ bool				check_sort(t_stack **a);
 t_stack				*ft_find_max(t_stack **stack);
 t_stack				*ft_find_min(t_stack **stack);
 void				indexing(t_stack **stack);
+void				find_target_node(t_stack **a, t_stack **b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:52:18 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/23 11:29:04 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:04:08 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ int	main(int ac, char **av)
 	// 	else
 	// 		ft_sort(stack_a);
 	// }
+	ft_pb(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
+	indexing(&stack_b);
+	find_target_node(&stack_a, &stack_b);
+	while (stack_a != NULL)
+	{
+		printf("Node with value %d in stackA has target index %d in stackB\n",
+			stack_a->value, stack_a->target_index);
+		stack_a = stack_a->next;
+	}
 	while (stack_a)
 	{
 		printf("stack_a element: `%d`\n", stack_a->value);
