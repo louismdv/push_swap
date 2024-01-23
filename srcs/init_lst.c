@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:46:22 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/18 15:31:20 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:29:23 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,21 @@ void	list_args(int *tab, t_stack **stack_a, int size)
 	i = 0;
 	while (i < size)
 	{
-		ft_add_back(stack_a, ft_new_node(tab[i]));
+		add_node_back(stack_a, ft_new_node(tab[i]));
 		i++;
 	}
+}
+void	add_node_back(t_stack **lst, t_stack *new)
+{
+	t_stack	*last;
+
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	last = *lst;
+	while (last->next)
+		last = last->next;
+	last->next = new;
 }

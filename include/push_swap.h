@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/22 15:01:10 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:57:51 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,18 @@ typedef struct s_stack
 int					check_num(char *str, int size);
 int					check_dup(int *tab, int size);
 long				ft_atol(const char *nptr);
-t_stack				*ft_parse(int ac, char **av);
+t_stack				*init_stack(int ac, char **av);
 t_stack				*ft_parse_int(int ac, char **av);
 t_stack				*ft_parse_quoted(char **av);
 void				list_args(int *tab, t_stack **stack_a, int size);
 
 // node manipulation
 t_stack				*ft_new_node(int content);
-void				ft_add_back(t_stack **lst, t_stack *new);
 t_stack				*ft_lst_last(t_stack *node);
 int					stack_len(t_stack *stack_a);
+void				add_node_back(t_stack **lst, t_stack *new);
+bool				ft_sort(t_stack *a);
+void				ft_free_stack(t_stack **a);
 
 // operations
 void				ft_sa(t_stack **stack_a);
@@ -59,8 +61,9 @@ void				ft_rrb(t_stack **b);
 void				ft_rrr(t_stack **a, t_stack **b);
 
 // algorithm
-void				ft_3sort(t_stack **a);
-void				ft_set_stack_to3(t_stack **a, t_stack **b);
-int					ft_size(t_stack *node);
+void				ft_sort3(t_stack **a);
+bool				check_sort(t_stack **a);
+
+
 
 #endif

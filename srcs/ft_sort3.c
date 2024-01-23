@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_3sort.c                                         :+:      :+:    :+:   */
+/*   ft_sort3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:59:15 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/22 12:07:10 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:39:47 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_3sort(t_stack **a)
+void	ft_sort3(t_stack **a)
 {
 	int	value1;
 	int	value2;

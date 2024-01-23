@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:48:23 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/22 12:04:21 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:32:19 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // 2. It checks if ac == 2. -> ft_parse_args_quoted(argv)
 // 3. It checks if ac > 2 -> list_args(argv, &stack_a)
 
-t_stack	*ft_parse(int ac, char **av)
+t_stack	*init_stack(int ac, char **av)
 {
 	t_stack	*stack_a;
 

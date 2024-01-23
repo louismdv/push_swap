@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:53:53 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/22 15:00:48 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:59:39 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,30 @@ int	stack_len(t_stack *stack_a)
 		i++;
 	}
 	return (i);
+}
+
+bool	ft_sort(t_stack *a)
+{
+	if(!(a))
+		return(0);
+	while(a->next)
+	{
+		if(a->value > a->next->value)
+			a = a->next;
+		else
+			return(0);
+	}
+	return(1);
+}
+
+void	ft_free_stack(t_stack **a)
+{
+	t_stack	*tmp;
+	
+	while(*a)
+	{
+		tmp = *a;
+		*a = (*a)->next;
+		free(tmp);
+	}
 }

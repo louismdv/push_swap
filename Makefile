@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+         #
+#    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 11:17:41 by louismdv          #+#    #+#              #
-#    Updated: 2024/01/22 12:04:53 by lmerveil         ###   ########.fr        #
+#    Updated: 2024/01/22 22:39:43 by louismdv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,11 @@ SRCS		 = 	$(addsuffix .c,		\
 				ft_parse_int		\
 				init_lst			\
 				ft_new_node			\
-				ft_add_back			\
 				operations			\
-				lst_utils			\
-				ft_3sort			\
-				ft_utils			\
+				stack_utils			\
+				ft_sort3			\
 				algorithm			\
+				main				\
 				))
 
 OFILES		= 	$(SRCS:.c=.o)
