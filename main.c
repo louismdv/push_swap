@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:52:18 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 12:01:46 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:55:03 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	main(int ac, char **av)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
+	t_stack	*currentA;
+	t_stack	*currentB;
 
 	b = NULL;
 	a = NULL;
@@ -31,35 +33,60 @@ int	main(int ac, char **av)
 			ft_sa(&a);
 		else if (stack_len(a) == 3)
 			ft_sort3(&a);
-	// 	else
-	// 		ft_sort(stack_a);
+		// 	else
+		// 		ft_sort(stack_a);
 	}
 	ft_pb(&a, &b);
 	ft_pb(&a, &b);
 	ft_pb(&a, &b);
-	if(b == NULL)
+	if (b == NULL)
 		printf("stack_b is empty\n");
 	indexing(&a);
 	indexing(&b);
 	find_target_node(&a, &b);
-	while(a->next)
+	currentA = a;
+	currentB = b;
+	// TESTS costs calculation
+	//
+	while (currentA != NULL)
 	{
-		printf("\n");
-		printf("push cost of stackA node: %d is %d\n", a->value, push_cost_a(&(*a)));
-		a=a->next;
+		printf("\npush cost stackA node: %d is %d", currentA->value,
+			push_cost_node(currentA, stack_len(a)));
+		printf("\n under median: %d", currentA->under_median);
+		currentA = currentA->next;
 	}
-	// while (a)
-	// {
-	// 	printf("stack_a element: `%d`\n", a->value);
-	// 	a = a->next;
-	// }
-	// while (b)
-	// {
-	// 	printf("stack_b element: `%d`\n", b->value);
-	// 	b = b->next;
-	// }
-	// ft_free_stack(&a);
-	return (0);
+	printf("\n");
+	while (currentB != NULL)
+	{
+		printf("\npush cost stackB node: %d is %d", currentB->value,
+			push_cost_node(currentB, stack_len(b)));
+		printf("\n under median: %d", currentB->under_median);
+		currentB = currentB->next;
+	}
+	printf("\n");
+	currentA = a;
+	while (currentA != NULL)
+	{
+		printf("\nTOTAL PUSH COST stackA node: %d is %d", currentA->value,
+			total_cost(currentA, stack_len(a), stack_len(b)));
+		printf("\n under median: %d\n", currentA->under_median);
+		currentA = currentA->next;
+	}
+	currentA = a;
+	while (currentA != NULL)
+	{
+		printf("cheapest: %d\n", currentA->cheapest);
+		currentA = currentA->next;
+	}
+	while (a)
+	{
+		printf("stack_a element: `%d`\n", a->value);
+		a = a->next;
+	}
+	while (b)
+	{
+		printf("stack_b element: `%d`\n", b->value);
+		b = b->next;
+	}
+	ft_free_stack(&a);
 }
-
-

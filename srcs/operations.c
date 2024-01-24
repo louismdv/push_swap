@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 11:17:54 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:05:29 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,19 @@ void	ft_pa(t_stack **a, t_stack **b)
 
 	if (!(*b))
 		return ;
-	if(!(*a))
+	if (!(*a))
 	{
 		*a = *b;
 		*b = (*b)->next;
 		(*a)->next = NULL;
 	}
-	if (!(*b))
-		return ;
-	tmp = *a;
-	*a = *b;
-	*b = (*b)->next;
-	(*a)->next = tmp;
+	else
+	{
+		tmp = *a;
+		*a = *b;
+		*b = (*b)->next;
+		(*a)->next = tmp;
+	}
 	write(1, "pa\n", 3);
 }
 
@@ -82,7 +83,7 @@ void	ft_pb(t_stack **a, t_stack **b)
 
 	if (!(*a))
 		return ;
-	if(!(*b))
+	if (!(*b))
 	{
 		*b = *a;
 		*a = (*a)->next;
