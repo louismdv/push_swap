@@ -3,4 +3,7 @@
 		"libft.h": "c",
 		"push_swap.h": "c"
 	}
+    "files.exclude": {
+        "**/*.o": true
+    }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atob.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:01:58 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/01/23 15:07:01 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:50:46 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,23 @@ void	indexing(t_stack **stack)
 {
 	int	indexgo;
 	int	median;
+	t_stack	*current;
 
-	median = stack_len(*stack) / 2;
+	current = (*stack);
+	median = stack_len(current) / 2;
 	indexgo = 0;
-	if ((*stack) == NULL)
+	if (current == NULL)
 		return ;
-	while ((*stack) != NULL)
+	while (current != NULL)
 	{
-		(*stack)->index = indexgo;
+		current->index = indexgo;
 		if (indexgo >= median)
-			(*stack)->above_median = 1;
+			current->above_median = 1;
 		else
-			(*stack)->above_median = 0;
-		(*stack) = (*stack)->next;
-		++indexgo;
+			current->above_median = 0;
+		// printf("Node with value %d has index %d\n", current->value, current->index);
+		current = current->next;
+		indexgo++;
 	}
 }
 void	find_target_node(t_stack **a, t_stack **b)
@@ -56,28 +59,41 @@ void	find_target_node(t_stack **a, t_stack **b)
 		currentB = (*b);
 		closestInferiorNode = NULL;
 		minDiff = INT_MAX;
-		while (currentB != NULL)
+		while (currentB && currentB->next)
 		{
 			valDiff = currentA->value - currentB->value;
 			if (valDiff > 0 && valDiff < minDiff)
 			{
 				closestInferiorNode = currentB;
-				printf("nodeA %d target node: %d\n", currentA->value,
-					closestInferiorNode->value);
 				minDiff = valDiff;
 			}
 			currentB = currentB->next;
-			if (closestInferiorNode != NULL)
-				currentA->target_index = closestInferiorNode->index;
-			else
-				currentA->target_index = -1;
 		}
+		if (closestInferiorNode != NULL)
+			{
+				currentA->target_index = closestInferiorNode->index;
+				currentA->target_node = closestInferiorNode;
+			}
+		else
+			currentA->target_index = -1;
+		printf("Node with value %d in stackA has target index %d in stackB\n", currentA->value, currentA->target_index);
 		currentA = currentA->next;
 	}
 }
 
-// void	push_cost(t_stack **a)
-// {
-// 	if((*a) == NULL)
+int	push_cost_a(t_stack *node)
+{
+	int	pushupA;
+	
+	if((node) == NULL)
+		return 0;
+	if((node)->above_median)
+		pushupA = stack_len((node)) - ((node)->index) + 1;
+	else (pushupA = (node)->index);
+	return(pushupA);
+}
 
-// }
+// push cost = 
+// (#operations to bring a node on top A/) 
+// + 
+// (#operations ot bring a target node on top of B/)

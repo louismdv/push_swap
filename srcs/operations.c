@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/23 11:29:28 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:17:54 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ void	ft_pa(t_stack **a, t_stack **b)
 
 	if (!(*b))
 		return ;
+	if(!(*a))
+	{
+		*a = *b;
+		*b = (*b)->next;
+		(*a)->next = NULL;
+	}
+	if (!(*b))
+		return ;
 	tmp = *a;
 	*a = *b;
 	*b = (*b)->next;
@@ -74,10 +82,19 @@ void	ft_pb(t_stack **a, t_stack **b)
 
 	if (!(*a))
 		return ;
-	tmp = *b;
-	*b = *a;
-	*a = (*a)->next;
-	(*b)->next = tmp;
+	if(!(*b))
+	{
+		*b = *a;
+		*a = (*a)->next;
+		(*b)->next = NULL;
+	}
+	else
+	{
+		tmp = *b;
+		*b = *a;
+		*a = (*a)->next;
+		(*b)->next = tmp;
+	}
 	write(1, "pb\n", 3);
 }
 

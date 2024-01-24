@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+         #
+#    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 11:17:41 by louismdv          #+#    #+#              #
-#    Updated: 2024/01/23 10:30:12 by lmerveil         ###   ########.fr        #
+#    Updated: 2024/01/23 22:22:51 by louismdv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ LIBFT_FILE	=	libft.a
 LIBFT_LIB	=	$(LIBFT_PATH)/$(LIBFT_FILE)
 
 SRCS		 = 	$(addsuffix .c,		\
+				main				\
 				$(addprefix srcs/, 	\
 				check_input			\
 				ft_atol				\
@@ -38,7 +39,6 @@ SRCS		 = 	$(addsuffix .c,		\
 				stack_utils			\
 				ft_sort3			\
 				algorithm			\
-				main				\
 				atob				\
 				))
 
