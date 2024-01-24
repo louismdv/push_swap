@@ -6,7 +6,7 @@
 #    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 11:17:41 by louismdv          #+#    #+#              #
-#    Updated: 2024/01/23 22:22:51 by louismdv         ###   ########.fr        #
+#    Updated: 2024/01/24 22:51:42 by louismdv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ SRCS		 = 	$(addsuffix .c,		\
 				ft_parse_quoted		\
 				ft_parse_int		\
 				init_lst			\
-				ft_new_node			\
 				operations			\
 				stack_utils			\
 				ft_sort3			\

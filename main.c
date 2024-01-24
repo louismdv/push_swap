@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:52:18 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 17:55:03 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:30:27 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,35 @@ int	main(int ac, char **av)
 		printf("\n under median: %d\n", currentA->under_median);
 		currentA = currentA->next;
 	}
+	
 	currentA = a;
-	while (currentA != NULL)
+	printf("\n");
+	printf("cheapest stackA:\n");
+	cheapest(&a);
+	while (currentA!= NULL)
 	{
-		printf("cheapest: %d\n", currentA->cheapest);
+		printf("cheapest node %d: %d\n", currentA->value, currentA->cheapest);
 		currentA = currentA->next;
 	}
+
+	printf("\n");
+	currentB = b;
+	printf("cheapest stackB:\n");
+	cheapest(&b);
+	while (currentB!= NULL)
+	{
+		printf("cheapest node %d: %d\n", currentB->value, currentB->cheapest);
+		currentB = currentB->next;
+	}
+
+	printf("\n");
 	while (a)
 	{
 		printf("stack_a element: `%d`\n", a->value);
 		a = a->next;
 	}
+
+	printf("\n");
 	while (b)
 	{
 		printf("stack_b element: `%d`\n", b->value);

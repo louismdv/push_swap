@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:46:22 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/22 22:29:23 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:51:32 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,32 @@ void	list_args(int *tab, t_stack **stack_a, int size)
 		i++;
 	}
 }
-void	add_node_back(t_stack **lst, t_stack *new)
+
+t_stack	*ft_new_node(int content)
+{
+	t_stack *newnode;
+
+	newnode = malloc(sizeof(t_stack));
+	if (!newnode)
+		return (NULL);
+	newnode->value = content;
+	newnode->prev = NULL;
+	newnode->next = NULL;
+	return (newnode);
+}
+
+void	add_node_back(t_stack **stack, t_stack *newnode)
 {
 	t_stack	*last;
 
-	if (*lst == NULL)
+	if (*stack == NULL)
 	{
-		*lst = new;
+		*stack = newnode;
 		return ;
 	}
-	last = *lst;
+	last = *stack;
 	while (last->next)
 		last = last->next;
-	last->next = new;
+	last->next = newnode;
+	newnode->prev = last;
 }

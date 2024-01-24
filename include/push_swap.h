@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 17:53:34 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:23:25 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ void				indexing(t_stack **stack);
 void				find_target_node(t_stack **a, t_stack **b);
 int					push_cost_node(t_stack *node, int stacklen);
 int					total_cost(t_stack *a, int stacklenA, int stacklenB);
-t_stack				*cheapest(t_stack **a);
+void				cheapest(t_stack **stack);
+
 #endif

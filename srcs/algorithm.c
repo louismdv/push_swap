@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 17:53:56 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/24 23:28:57 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*cheapest(t_stack **a)
+void	cheapest(t_stack **stack)
 {
-	t_stack *currentA;
+	t_stack *current;
 
-	currentA = NULL;
-	if ((*a) == NULL)
-		return (currentA);
-	currentA = (*a);
-	(*a) = (*a)->next;
-	while ((*a) != NULL)
+	current = NULL;
+	if ((*stack) == NULL)
+		return ;
+	current = ft_lst_last(*stack);
+	while(current != NULL && current->prev != NULL)
 	{
-		(*a)->cheapest = 0;
-		if (currentA->push_cost > (*a)->push_cost)
-			currentA = (*a);
-		(*a) = (*a)->next;
+		if(current->push_cost < current->prev->push_cost)
+			(*stack) = current->prev;
+		current->cheapest = 0;
+		current = current->prev;
 	}
-	currentA->cheapest = 1;
-	return (currentA);
+	(*stack)->cheapest = 1;
 }
+	

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 16:05:29 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:59:15 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	ft_sa(t_stack **a)
 	tmp = *a;
 	*a = (*a)->next;
 	tmp->next = (*a)->next;
+	tmp->prev = (*a);
 	(*a)->next = tmp;
+	(*a)->prev = NULL;
 	write(1, "sa\n", 3);
 }
 
