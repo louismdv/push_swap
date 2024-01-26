@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:53:53 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/26 01:05:43 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:39:30 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,20 @@ void	ft_free_stack(t_stack **a)
 	}
 }
 
-t_stack	*ft_find_max(t_stack **stack)
+t_stack	*ft_find_max(t_stack *stack)
 {
 	t_stack	*max;
 
 	max = NULL;
-	if (!(*stack))
+	if (!stack)
 		return (max);
-	max = (*stack);
-	(*stack) = (*stack)->next;
-	while ((*stack) != NULL)
+	max = stack;
+	stack = stack->next;
+	while (stack != NULL)
 	{
-		if (max->value < (*stack)->value)
-			max = (*stack);
-		(*stack) = (*stack)->next;
+		if (max->value < stack->value)
+			max = stack;
+		stack = stack->next;
 	}
 	return (max);
 }

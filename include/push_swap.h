@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/26 01:39:55 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:40:03 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_stack
 	int				push_cost;
 	bool			under_median;
 	bool			cheapest;
-	int				target_index;
 	struct s_stack	*target_node;
 	struct s_stack	*prev;
 }					t_stack;
@@ -63,12 +62,12 @@ void				ft_rrr(t_stack **a, t_stack **b);
 // algorithm
 void				ft_sort3(t_stack **a);
 bool				check_sort(t_stack *stack);
-t_stack				*ft_find_max(t_stack **stack);
+t_stack				*ft_find_max(t_stack *stack);
 t_stack				*ft_find_min(t_stack **stack);
 void				indexing(t_stack **stack);
 void				find_target_node(t_stack **a, t_stack **b);
 int					push_cost_node(t_stack *node, int stacklen);
-int	total_cost(t_stack **a, int stacklenA, int stacklenB);
+int					total_cost(t_stack **a, int stacklenA, int stacklenB);
 void				cheapest(t_stack **stack);
 void				init_b(t_stack **a, t_stack **b);
 void				ft_sort(t_stack **a, t_stack **b);
