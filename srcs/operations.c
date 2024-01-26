@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 22:59:15 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/26 00:03:21 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ void	ft_sb(t_stack **b)
 {
 	t_stack	*tmp;
 
-	if (!*b || !((*b)->next))
+	if (!(*b) || !(*b)->next)
 		return ;
 	tmp = *b;
 	*b = (*b)->next;
 	tmp->next = (*b)->next;
+	tmp->prev = (*b);
 	(*b)->next = tmp;
+	(*b)->prev = NULL;
 	write(1, "sb\n", 3);
 }
 
@@ -64,6 +66,8 @@ void	ft_pa(t_stack **a, t_stack **b)
 	{
 		*a = *b;
 		*b = (*b)->next;
+		if(*b)
+			(*b)->prev = NULL;
 		(*a)->next = NULL;
 	}
 	else
@@ -71,7 +75,10 @@ void	ft_pa(t_stack **a, t_stack **b)
 		tmp = *a;
 		*a = *b;
 		*b = (*b)->next;
+		if(*b)
+			(*b)->prev = NULL;
 		(*a)->next = tmp;
+		tmp->prev = *a;
 	}
 	write(1, "pa\n", 3);
 }
@@ -89,6 +96,9 @@ void	ft_pb(t_stack **a, t_stack **b)
 	{
 		*b = *a;
 		*a = (*a)->next;
+		if(*a)
+			(*a)->prev = NULL;
+		(*b)->prev = NULL;	
 		(*b)->next = NULL;
 	}
 	else
@@ -96,7 +106,10 @@ void	ft_pb(t_stack **a, t_stack **b)
 		tmp = *b;
 		*b = *a;
 		*a = (*a)->next;
+		if(*a)
+			(*a)->prev = NULL;
 		(*b)->next = tmp;
+		tmp->prev = *b;
 	}
 	write(1, "pb\n", 3);
 }
@@ -107,12 +120,14 @@ void	ft_ra(t_stack **a)
 	t_stack	*tmp;
 
 	tmp = *a;
-	if (!(*a))
+	if (!(*a) || !((*a)->next))
 		return ;
 	*a = ft_lst_last(*a);
 	(*a)->next = tmp;
-	*a = tmp->next;
-	tmp->next = NULL;
+	tmp->prev = *a;
+	*a = tmp->next; //revoit *a pointer sur le deuxieme element de la chaine
+	tmp->next = NULL; // avant de couper le premier element du reste de la chaine
+	(*a)->prev = NULL;
 	write(1, "ra\n", 3);
 }
 
@@ -123,12 +138,14 @@ void	ft_rb(t_stack **b)
 	t_stack	*tmp;
 
 	tmp = *b;
-	if (!(*b))
+	if (!(*b) || !((*b)->next))
 		return ;
 	*b = ft_lst_last(*b);
 	(*b)->next = tmp;
+	tmp->prev = *b;
 	*b = tmp->next;
 	tmp->next = NULL;
+	(*b)->prev = NULL;
 	write(1, "rb\n", 3);
 }
 

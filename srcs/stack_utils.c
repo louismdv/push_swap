@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:53:53 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/23 13:34:40 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/26 01:05:43 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,30 @@ t_stack	*ft_lst_last(t_stack *node)
 }
 
 // measures stack length
-int	stack_len(t_stack *stack_a)
+int	stack_len(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	if (!stack_a)
+	if (!stack)
 		return (i);
-	while (stack_a)
+	while (stack != NULL)
 	{
-		stack_a = stack_a->next;
+		stack = stack->next;
 		i++;
 	}
 	return (i);
 }
 
 // checks if stack is sort
-bool	check_sort(t_stack **a)
+bool	check_sort(t_stack *stack)
 {
-	if (!(*a))
-		return (0);
-	while ((*a)->next)
+	if (!stack)
+		return (1);
+	while (stack->next)
 	{
-		if ((*a)->value > (*a)->next->value)
-			(*a) = (*a)->next;
+		if (stack->value > stack->next->value)
+			stack = stack->next;
 		else
 			return (0);
 	}

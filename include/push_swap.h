@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 23:23:25 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/26 01:39:55 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void				list_args(int *tab, t_stack **stack_a, int size);
 // node manipulation
 t_stack				*ft_new_node(int content);
 t_stack				*ft_lst_last(t_stack *node);
-int					stack_len(t_stack *stack_a);
-void				add_node_back(t_stack **lst, t_stack *new);
+int					stack_len(t_stack *stack);
+void				add_node_back(t_stack **stack, t_stack *newnode);
 void				ft_free_stack(t_stack **a);
 
 // operations
@@ -62,13 +62,14 @@ void				ft_rrr(t_stack **a, t_stack **b);
 
 // algorithm
 void				ft_sort3(t_stack **a);
-bool				check_sort(t_stack **a);
+bool				check_sort(t_stack *stack);
 t_stack				*ft_find_max(t_stack **stack);
 t_stack				*ft_find_min(t_stack **stack);
 void				indexing(t_stack **stack);
 void				find_target_node(t_stack **a, t_stack **b);
 int					push_cost_node(t_stack *node, int stacklen);
-int					total_cost(t_stack *a, int stacklenA, int stacklenB);
+int	total_cost(t_stack **a, int stacklenA, int stacklenB);
 void				cheapest(t_stack **stack);
-
+void				init_b(t_stack **a, t_stack **b);
+void				ft_sort(t_stack **a, t_stack **b);
 #endif
