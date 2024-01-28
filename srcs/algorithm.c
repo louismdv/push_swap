@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/26 18:44:27 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/29 00:41:51 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,66 +17,32 @@ void	cheapest(t_stack **stack)
 	t_stack	*current1;
 	t_stack	*current2;
 	t_stack	*ptr_cheapest;
-	int		valDiff;
-	int		minDiff;
 
 	printf("\n");
 	printf("[searching cheapest node...]\n");
-	current1 = (*stack);
-	while (current1 != NULL)
-	{
-		current2 = current1->next;
-		ptr_cheapest = NULL; // Initialize ptr_cheapest for each current1
-		minDiff = INT_MAX;
-		while (current2 != NULL)
-		{
-			valDiff = current1->push_cost - current2->push_cost;
-			if (valDiff >= 0 && valDiff < minDiff)
-			{
-				ptr_cheapest = current2;
-				minDiff = valDiff;
-			}
-			current2 = current2->next;
-		}
-		if (ptr_cheapest != NULL)
-		{
-			ptr_cheapest->cheapest = 1;
-		}
-		printf("node value: [%d]-> cheapest [%d]\n", current1->value,
-			current1->cheapest);
-		current1 = current1->next;
-	}
+   	current1 = (*stack);
+	ptr_cheapest = current1;
+    while (current1 != NULL)
+    {
+        current2 = current1->next;
+        while (current2 != NULL)
+        {
+            if (current2->push_cost < ptr_cheapest->push_cost)
+                ptr_cheapest = current2;
+            current2 = current2->next;
+        }
+        current1 = current1->next;
+    }
+    if (ptr_cheapest != NULL)
+        ptr_cheapest->cheapest = 1;
+    current1 = (*stack);
+    while (current1 != NULL)
+    {
+        printf("node value: [%d]-> push_cost: [%d]->cheapest: [%d]\n", current1->value, current1->push_cost, current1->cheapest);
+        current1 = current1->next;
+    }
 	printf("\n");
 }
-
-// void	cheapest(t_stack **stack)
-// {
-// 	t_stack	*current;
-// 	t_stack	*start;
-
-// 	start = *stack;
-// 	current = NULL;
-// 	if (*stack == NULL)
-// 		return ;
-// 	current = ft_lst_last(*stack);
-// 	while ()
-// 	{
-// 		while (current != NULL && current->prev != NULL)
-// 		{
-//
-// 		}
-// 	}
-// 	if (*stack != NULL)
-// 		(*stack)->cheapest = 1;
-// 	current = start;
-// 	while (current != NULL)
-// 	{
-// 		printf("Node value: [%d]-> cheapest: [%d]\n", current->value,
-// 			current->cheapest);
-// 		current = current->next;
-// 	}
-// 	printf("\n");
-// }
 
 void	init_b(t_stack **a, t_stack **b)
 {
@@ -104,8 +70,9 @@ void	ft_sort(t_stack **a, t_stack **b)
 		find_target_node(&currentA, &currentB);
 		find_target_node(&currentB, &currentA);
 		total_cost(a, stack_len(*a), stack_len(*b));
+		total_cost(b, stack_len(*b), stack_len(*a));
 		cheapest(&currentA);
-		// cheapest(&currentB);
+		cheapest(&currentB);
 		currentA = *a;
 		while (currentA != NULL && currentA->next != NULL)
 		{

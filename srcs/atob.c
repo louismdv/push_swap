@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atob.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:01:58 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/01/26 17:16:55 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/29 00:40:39 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	indexing(t_stack **stack)
 	t_stack	*current;
 
 	current = (*stack);
-	median = stack_len(current) / 2;
+	median = (stack_len(current)-1) / 2;
 	indexgo = 0;
 	printf("[indexing...]\n");
 	if (current == NULL)
@@ -108,7 +108,7 @@ int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 		total_cost = push_cost_node(current, stacklenA)
 			+ push_cost_node(current->target_node, stacklenB);
 		current->push_cost = total_cost;
-		printf("total cost [%d]: %d\n", current->value, total_cost);
+		// printf("total cost [%d]: %d\n", current->value, total_cost);
 		current = current->next;
 	}
 	return (total_cost);
