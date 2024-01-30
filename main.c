@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:52:18 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/30 10:27:51 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/30 23:43:00 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	main(int ac, char **av)
 			init_b(&a, &b);
 		atob(&a, &b);
 	}
-	// btoa(&a,&b);
+	btoa(&a,&b);
 	ft_free_stack(&a);
 }

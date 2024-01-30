@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/29 23:19:28 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/30 23:37:54 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@
 //- swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements).
 void	ft_sa(t_stack **a)
 {
-	t_stack	*tmp;
+	t_stack	*newhead;
 
+	printstack(a);
 	if (!(*a) || !(*a)->next)
 		return ;
-	tmp = *a;
-	*a = (*a)->next;
-	tmp->next = (*a)->next;
-	tmp->prev = (*a);
-	(*a)->next = tmp;
-	(*a)->prev = NULL;
+	newhead = (*a)->next;
+	(*a)->next = newhead->next;
+	newhead->next = (*a);
+	(*a)->prev = newhead;
+	newhead->prev = NULL;
+	*a = newhead;
+	printstack(a);
 	write(1, "sa\n", 3);
 }
 
@@ -33,24 +35,26 @@ void	ft_sa(t_stack **a)
 //- swap the first 2 nodes at the top of stack b. Do nothing if there is only one or no nodes).
 void	ft_sb(t_stack **b)
 {
-	t_stack	*tmp;
+	t_stack	*newhead;
 
+	printstack(b);
 	if (!(*b) || !(*b)->next)
 		return ;
-	tmp = *b;
-	*b = (*b)->next;
-	tmp->next = (*b)->next;
-	tmp->prev = (*b);
-	(*b)->next = tmp;
-	(*b)->prev = NULL;
+	newhead = (*b)->next;
+	(*b)->next = newhead->next;
+	newhead->next = (*b);
+	(*b)->prev = newhead;
+	newhead->prev = NULL;
+	*b = newhead;
+	printstack(b);
 	write(1, "sb\n", 3);
 }
 
 // ss: sa and sb at the same time.
 void	ft_ss(t_stack **a, t_stack **b)
 {
-	ft_sa(&(*a));
-	ft_sb(&(*b));
+	ft_sa(a);
+	ft_sb(b);
 	write(1, "ss\n", 3);
 }
 
@@ -155,41 +159,29 @@ void	ft_rr(t_stack **a, t_stack **b)
 	if (!(*a) || !((*a)->next))
 		return ;
 	else
-		ft_ra(&(*a));
+		ft_ra(a);
 	if (!(*b) || !((*b)->next))
 		return ;
 	else
-		ft_rb(&(*b));
+		ft_rb(b);
 	write(1, "rr\n", 3);
 }
 
 // rra: reverse rotate a
 //- shift down all the nodes of a by 1. The last node becomes the first one.
-void ft_rra(t_stack **a) {
+void ft_rra(t_stack **a)
+{
     if (!*a || !(*a)->next)
         return;
-
-    int i = 0;
-    t_stack *tmp = *a;
-
-    // Find the last node and count the number of nodes
-    while (tmp->next) {
-        tmp = tmp->next;
-        i++;
-    }
-
-    // Use a separate pointer to traverse the list to avoid modifying *a
-    t_stack *current = *a;
-    while (i > 1) {
-        current = current->next;
-        i--;
-    }
-
-    // Rearrange pointers to perform the rotation
-    tmp->next = *a;
-    current->next = NULL;
-    (*a)->prev = NULL;
-
+	t_stack *newfirst;
+	t_stack	*last;
+	last = ft_lst_last(*a)->prev;
+    newfirst = ft_lst_last(*a);
+    newfirst->next = *a;
+	(*a)->prev = newfirst;
+	newfirst->prev = NULL;
+	last->next = NULL;
+	*a = newfirst;
     write(1, "rra\n", 4);
 }
 
@@ -198,34 +190,24 @@ void ft_rra(t_stack **a) {
 //- shift down all the nodes of b by 1. The last node becomes the first one.
 void	ft_rrb(t_stack **b)
 {
-	int		i;
-	t_stack	*tmp;
-
-	i = 0;
-	tmp = NULL;
-	if (!(*b) || !((*b)->next))
-		return ;
-	tmp = *b;
-	while ((*b)->next)
-	{
-		(*b) = (*b)->next;
-		i++;
-	}
-	(*b)->next = tmp;
-	while (i > 1)
-	{
-		tmp = tmp->next;
-		i--;
-	}
-	tmp->next = NULL;
-	(*b)->prev = NULL;
+    if (!*b || !(*b)->next)
+        return;
+	t_stack *newfirst;
+	t_stack	*last;
+	last = ft_lst_last(*b)->prev;
+    newfirst = ft_lst_last(*b);
+    newfirst->next = *b;
+	(*b)->prev = newfirst;
+	newfirst->prev = NULL;
+	last->next = NULL;
+	*b = newfirst;
 	write(1, "rrb\n", 4);
 }
 
 // rrr: rra and rrb at the same time.
 void	ft_rrr(t_stack **a, t_stack **b)
 {
-	ft_rra(&(*a));
-	ft_rrb(&(*b));
+	ft_rra(a);
+	ft_rrb(b);
 	write(1, "rrr\n", 4);
 }

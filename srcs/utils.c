@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/30 12:02:29 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:54:35 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	init_b(t_stack **a, t_stack **b)
 	ft_pb(a, b);
 	if ((*b)->next == NULL)
 		return ;
-	else if (!check_sort(*b))
+	else if (check_sort(*b)) //make decr
 		ft_sb(b);
 }
 
@@ -104,6 +104,7 @@ void	bring_a2top(t_stack *current, t_stack **stacka)
 			ft_rra(stacka);
 		else
 			ft_sa(stacka);
+		indexing(stacka);
 	}
 }
 
@@ -117,6 +118,7 @@ void	bring_b2top(t_stack *current, t_stack **stackb)
 			ft_rrb(stackb);
 		else
 			ft_sb(stackb);
+		indexing(stackb);
 	}
 }
 

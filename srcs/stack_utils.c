@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:53:53 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/30 10:53:31 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/30 23:09:02 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // makes node pointer point to last node of stack
 t_stack	*ft_lst_last(t_stack *node)
 {
-	if (!node)
+	if (!node && !node->next)
 		return (NULL);
 	while (node->next)
 		node = node->next;
