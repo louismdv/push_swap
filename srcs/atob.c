@@ -5,111 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 15:01:58 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/01/29 00:40:39 by louismdv         ###   ########.fr       */
+/*   Created: 2024/01/29 14:01:34 by louismdv          #+#    #+#             */
+/*   Updated: 2024/01/29 23:32:11 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	indexing(t_stack **stack)
+void	atob(t_stack **a, t_stack **b)
 {
-	int		indexgo;
-	int		median;
-	t_stack	*current;
+	t_stack *currentA;
+	t_stack *Atarget;
 
-	current = (*stack);
-	median = (stack_len(current)-1) / 2;
-	indexgo = 0;
-	printf("[indexing...]\n");
-	if (current == NULL)
-		return ;
-	printf("stacklen: %d, median: %d\n", stack_len(current), median);
-	while (current != NULL)
+	printf(RED"[AtoB: ...]\n"RESET);
+	if (check_sort(*a) == 0)
 	{
-		current->index = indexgo;
-		if (indexgo > median)
-			current->under_median = 1;
-		else
-			current->under_median = 0;
-		printf("Node value: [%d]-> index: [%d] -> under median: [%d]\n",
-			current->value, current->index, current->under_median);
-		current = current->next;
-		indexgo++;
-	}
-	printf("\n");
-}
-void	find_target_node(t_stack **a, t_stack **b)
-{
-	t_stack	*currentA;
-	t_stack	*currentB;
-	t_stack	*closestInferiorNode;
-	int		valDiff;
-	int		minDiff;
-
-	if (!(*a) || !(*b))
-	{
-		printf("[One of the stacks is empty.]\n");
-		return ;
-	}
-	currentA = (*a);
-	printf("[finding target nodes...]\n");
-	while (currentA != NULL)
-	{
-		currentB = (*b);
-		closestInferiorNode = NULL;
-		minDiff = INT_MAX;
-		while (currentB)
+		currentA = *a;
+		while(stack_len(*a) > 3)
 		{
-			valDiff = currentA->value - currentB->value;
-			if (valDiff > 0 && valDiff < minDiff)
+			//as long as /A not == 3, push cheapest node to B
+			if (currentA != NULL)
 			{
-				closestInferiorNode = currentB;
-				minDiff = valDiff;
+				currentA = *a;
+				Atarget = currentA->target_node;
+				init_cheapest(*a);
+				init_cheapest(*b);
+				indexing(a);
+				indexing(b);
+
+				find_target_nodea(a,b);
+				find_target_nodeb(b,a);
+
+				total_cost(a, stack_len(*a), stack_len(*b));
+				total_cost(b, stack_len(*a), stack_len(*b));
+				
+				cheapest(a);
+				cheapest(b);
+
+				while(currentA != NULL)
+				{
+					if(currentA->cheapest == 1)
+					{
+						bring_a2top(currentA);
+						bring_b2top(Atarget);
+						ft_pb(&currentA,b);
+						printf(GREEN ">>>>>>>>>> pushing node [%d] to B\n" RESET, currentA->value );
+						printf("stack a:\n");
+						printstack(a);
+						printf("stack b:\n");
+						printstack(b);
+						break;
+					}
+					currentA = currentA->next;
+				}
 			}
-			currentB = currentB->next;
 		}
-		if (closestInferiorNode != NULL)
-			currentA->target_node = closestInferiorNode;
-		else
-			currentA->target_node = ft_find_max(*b);
-		printf("node value: [%d]-> target index [%d] in stackB\n",
-			currentA->value, currentA->target_node->index);
-		currentA = currentA->next;
+		ft_sort3(a);
+	printf("_______________________________________________________________\n");
 	}
-	printf("\n");
-}
-
-int	push_cost_node(t_stack *node, int stacklen)
-{
-	int	pushup_node;
-
-	// printf("[calculating push cost...]\n");
-	if (node == NULL)
-		return (0);
-	else if (node->under_median == 1)
-		pushup_node = stacklen - (node->index);
-	else
-		pushup_node = node->index;
-	// printf("push cost [%d]: %d\n", node->value, pushup_node);
-	return (pushup_node);
-}
-
-int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
-{
-	int		total_cost;
-	t_stack	*current;
-
-	current = (*stack);
-	printf("[calculating total cost...]\n");
-	total_cost = 0;
-	while (current != NULL)
-	{
-		total_cost = push_cost_node(current, stacklenA)
-			+ push_cost_node(current->target_node, stacklenB);
-		current->push_cost = total_cost;
-		// printf("total cost [%d]: %d\n", current->value, total_cost);
-		current = current->next;
-	}
-	return (total_cost);
+	printf("stack a:\n");
+		printstack(a);
+	printf("stack b:\n");
+		printstack(b);
 }

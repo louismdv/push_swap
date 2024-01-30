@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/26 00:03:21 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:19:28 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,30 +165,34 @@ void	ft_rr(t_stack **a, t_stack **b)
 
 // rra: reverse rotate a
 //- shift down all the nodes of a by 1. The last node becomes the first one.
-void	ft_rra(t_stack **a)
-{
-	int		i;
-	t_stack	*tmp;
+void ft_rra(t_stack **a) {
+    if (!*a || !(*a)->next)
+        return;
 
-	if (!*a || !(*a)->next)
-		return ;
-	i = 0;
-	tmp = *a;
-	while ((*a)->next)
-	{
-		*a = (*a)->next;
-		i++;
-	}
-	(*a)->next = tmp;
-	while (i > 1)
-	{
-		tmp = tmp->next;
-		i--;
-	}
-	tmp->next = NULL;
-	(*a)->prev = NULL;
-	write(1, "rra\n", 4);
+    int i = 0;
+    t_stack *tmp = *a;
+
+    // Find the last node and count the number of nodes
+    while (tmp->next) {
+        tmp = tmp->next;
+        i++;
+    }
+
+    // Use a separate pointer to traverse the list to avoid modifying *a
+    t_stack *current = *a;
+    while (i > 1) {
+        current = current->next;
+        i--;
+    }
+
+    // Rearrange pointers to perform the rotation
+    tmp->next = *a;
+    current->next = NULL;
+    (*a)->prev = NULL;
+
+    write(1, "rra\n", 4);
 }
+
 
 // rrb: reverse rotate b
 //- shift down all the nodes of b by 1. The last node becomes the first one.

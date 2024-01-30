@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/26 16:40:03 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:32:05 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <stdlib.h>
+
+#define RED "\x1B[31m"
+#define GREEN "\x1B[32m"
+#define YELLOW "\x1B[33m"
+#define RESET "\x1B[0m"
 
 typedef struct s_stack
 {
@@ -65,10 +70,20 @@ bool				check_sort(t_stack *stack);
 t_stack				*ft_find_max(t_stack *stack);
 t_stack				*ft_find_min(t_stack **stack);
 void				indexing(t_stack **stack);
-void				find_target_node(t_stack **a, t_stack **b);
+
+void				find_target_nodeb(t_stack **a, t_stack **b);
+void				find_target_nodea(t_stack **s1, t_stack **s2);
+
 int					push_cost_node(t_stack *node, int stacklen);
 int					total_cost(t_stack **a, int stacklenA, int stacklenB);
 void				cheapest(t_stack **stack);
+void				atob(t_stack **a, t_stack **b);
+void				btoa(t_stack **a, t_stack **b);
+void				bring_a2top(t_stack *current);
+void				bring_b2top(t_stack *current);
+
 void				init_b(t_stack **a, t_stack **b);
-void				ft_sort(t_stack **a, t_stack **b);
+void				init_cheapest(t_stack	*stack);
+void				printstack(t_stack **stack);
+
 #endif
