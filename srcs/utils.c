@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/30 00:11:49 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:02:29 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,49 +19,49 @@ void	cheapest(t_stack **stack)
 	t_stack	*ptr_cheapest;
 
 	printf("[searching cheapest node...]\n");
-   	current1 = (*stack);
+	current1 = (*stack);
 	ptr_cheapest = current1;
-    while (current1 != NULL)
-    {
-        current2 = current1->next;
-        while (current2 != NULL)
-        {
-            if (current2->push_cost < ptr_cheapest->push_cost)
-                ptr_cheapest = current2;
-            current2 = current2->next;
-        }
-        current1 = current1->next;
-    }
-    if (ptr_cheapest != NULL)
-        ptr_cheapest->cheapest = 1;
-    current1 = (*stack);
-    while (current1 != NULL)
-    {
-        // printf("node value: [%d]-> push_cost: [%d]->cheapest: [%d]\n", current1->value, current1->push_cost, current1->cheapest);
-        current1 = current1->next;
-    }
+	while (current1 != NULL)
+	{
+		current2 = current1->next;
+		while (current2 != NULL)
+		{
+			if (current2->push_cost < ptr_cheapest->push_cost)
+				ptr_cheapest = current2;
+			current2 = current2->next;
+		}
+		current1 = current1->next;
+	}
+	if (ptr_cheapest != NULL)
+		ptr_cheapest->cheapest = 1;
+	current1 = (*stack);
+	while (current1 != NULL)
+	{
+		printf("node value: [%d]-> push_cost: [%d]->cheapest: [%d]\n",
+			current1->value, current1->push_cost, current1->cheapest);
+		current1 = current1->next;
+	}
 	printf("\n");
 }
 
-void	init_cheapest(t_stack	*stack)
+void	init_cheapest(t_stack *stack)
 {
-	if(!stack)
+	if (!stack)
 		return ;
-	while(stack)
+	while (stack)
 	{
 		stack->cheapest = 0;
-		stack=stack->next;
+		stack = stack->next;
 	}
 }
 
-
-//Plangloi code
+// Plangloi code
 // void	cheapest(t_stack *stack)
 // {
 // 	t_stack *cheapest_node;
 // 	int	cheapest_value;
 // 	t_stack	*start;
-	
+
 // 	start = stack;
 // 	cheapest_value = INT_MAX;
 // 	while(stack)
@@ -77,7 +77,8 @@ void	init_cheapest(t_stack	*stack)
 //         cheapest_node->cheapest = 1;
 //     while (start != NULL)
 //     {
-//         printf("node value: [%d]-> push_cost: [%d]->cheapest: [%d]\n", start->value, start->push_cost, start->cheapest);
+//         printf("node value: [%d]-> push_cost: [%d]->cheapest: [%d]\n",
+// start->value, start->push_cost, start->cheapest);
 //         start = start->next;
 //     }
 // 	printf("\n");
@@ -93,42 +94,41 @@ void	init_b(t_stack **a, t_stack **b)
 		ft_sb(b);
 }
 
-void	bring_a2top(t_stack *current)
+void	bring_a2top(t_stack *current, t_stack **stacka)
 {
-	if(current->index != 0)
+	if (!current)
 		return ;
-	while(current->prev != NULL && current->index != 0)
+	while (current->index != 0)
 	{
-		if(current->under_median == 1)
-			ft_rra(&current);
+		if (current->under_median == 1)
+			ft_rra(stacka);
 		else
-			ft_sa(&current);
+			ft_sa(stacka);
 	}
 }
 
-void bring_b2top(t_stack *current) 
+void	bring_b2top(t_stack *current, t_stack **stackb)
 {
-    if (current == NULL)
-        return;
-    while (current->index != 0 && current->prev != NULL) 
+	if (!current)
+		return ;
+	while (current->index != 0)
 	{
-        if (current->under_median == 1) 
-            ft_rrb(&current);
+		if (current->under_median == 1)
+			ft_rrb(stackb);
 		else
-            ft_sb(&current);
-    }
+			ft_sb(stackb);
+	}
 }
-
 
 void	printstack(t_stack **stack)
 {
-	t_stack *current;
+	t_stack	*current;
+
 	current = *stack;
-	while(current != NULL)
+	while (current != NULL)
 	{
 		printf("|_ node value: [%d]\n", current->value);
 		current = current->next;
 	}
 	printf("\n");
 }
-

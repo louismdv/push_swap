@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:01:58 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/01/29 22:53:23 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:19:56 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	indexing(t_stack **stack)
 	t_stack	*current;
 
 	current = (*stack);
-	median = (stack_len(current)-1) / 2;
+	median = (stack_len(current) - 1) / 2;
 	indexgo = 0;
 	printf("[indexing...]\n");
 	if (current == NULL)
@@ -32,20 +32,21 @@ void	indexing(t_stack **stack)
 			current->under_median = 1;
 		else
 			current->under_median = 0;
-		printf("Node value: [%d]-> index: [%d]\n",
-			current->value, current->index);
+		printf("Node value: [%d]-> index: [%d]\n", current->value,
+			current->index);
 		current = current->next;
 		indexgo++;
 	}
 	printf("\n");
 }
-void	find_target_nodea(t_stack **a, t_stack **b) //closest inferior target node
+void	find_target_nodea(t_stack **a, t_stack **b)
+// closest inferior target node -> smallest positive difference
 {
-	t_stack	*currentA;
-	t_stack	*currentB;
-	t_stack	*closestInferiorNode;
-	int		valDiff;
-	int		minDiff;
+	t_stack *currentA;
+	t_stack *currentB;
+	t_stack *closestInferiorNode;
+	int valDiff;
+	int maxDiff;
 
 	if (!(*a) || !(*b))
 	{
@@ -53,19 +54,20 @@ void	find_target_nodea(t_stack **a, t_stack **b) //closest inferior target node
 		return ;
 	}
 	currentA = (*a);
-	printf(GREEN"[finding target nodes for stackA...]\n"RESET);
+	printf(GREEN "[finding target nodes for stackA...]\n" RESET);
 	while (currentA != NULL)
 	{
 		currentB = (*b);
 		closestInferiorNode = NULL;
-		minDiff = INT_MAX;
+		maxDiff = INT_MAX;
 		while (currentB)
 		{
 			valDiff = currentA->value - currentB->value;
-			if (valDiff > 0 && valDiff < minDiff)
+			// printf("node: [%d], value [%d]\n", currentA->value, valDiff);
+			if (valDiff > 0 && valDiff < maxDiff)
 			{
 				closestInferiorNode = currentB;
-				minDiff = valDiff;
+				maxDiff = valDiff;
 			}
 			currentB = currentB->next;
 		}
@@ -73,37 +75,39 @@ void	find_target_nodea(t_stack **a, t_stack **b) //closest inferior target node
 			currentA->target_node = closestInferiorNode;
 		else
 			currentA->target_node = ft_find_max(*b);
-		printf("node value: [%d]-> target index [%d]\n", currentA->value, currentA->target_node->index);
+		printf("node value: [%d]-> target index [%d]\n", currentA->value,
+			currentA->target_node->index);
 		currentA = currentA->next;
 	}
 	printf("\n");
 }
-void	find_target_nodeb(t_stack **a, t_stack **b) // closest superior target node
+
+void	find_target_nodeb(t_stack **a, t_stack **b)
+// closest superior target node -> smallest negative difference
 {
-	t_stack	*currentA;
-	t_stack	*currentB;
-	t_stack	*closestSuperiorNode;
-	int		valDiff;
-	int		minDiff;
+	t_stack *currentA;
+	t_stack *currentB;
+	t_stack *closestSuperiorNode;
+	int valDiff;
+	int minDiff;
 
 	if (!(*a) || !(*b))
 	{
-		printf(RED"[stackB is empty.]\n"RESET);
+		printf(RED "[stackB is empty.]\n" RESET);
 		return ;
 	}
 	currentB = (*b);
-	printf(GREEN"[finding target nodes for stackB...]\n"RESET);
+	printf(GREEN "[finding target nodes for stackB...]\n" RESET);
 	while (currentB != NULL)
 	{
 		currentA = (*a);
 		closestSuperiorNode = NULL;
-		minDiff = INT_MAX;
+		minDiff = INT_MIN;
 		while (currentA != NULL)
 		{
 			valDiff = currentB->value - currentA->value;
-			if(valDiff < 0)
-				valDiff *= -1;
-			if (valDiff < minDiff)
+			// printf("node: [%d], value [%d]\n", currentB->value, valDiff);
+			if (valDiff < 0 && valDiff > minDiff)
 			{
 				closestSuperiorNode = currentA;
 				minDiff = valDiff;
@@ -113,8 +117,9 @@ void	find_target_nodeb(t_stack **a, t_stack **b) // closest superior target node
 		if (closestSuperiorNode != NULL)
 			currentB->target_node = closestSuperiorNode;
 		else
-			currentB->target_node = ft_find_min(a);
-		printf("node value: [%d]-> target index [%d]\n", currentB->value, currentB->target_node->index);
+			currentB->target_node = ft_find_min(*a);
+		printf("node value: [%d]-> target index [%d]\n", currentB->value,
+			currentB->target_node->index);
 		currentB = currentB->next;
 	}
 	printf("\n");

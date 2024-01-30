@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:53:53 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/26 16:39:30 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/30 10:53:31 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,20 @@ t_stack	*ft_find_max(t_stack *stack)
 	return (max);
 }
 
-t_stack	*ft_find_min(t_stack **stack)
+t_stack	*ft_find_min(t_stack *stack)
 {
 	t_stack	*min;
 
 	min = NULL;
-	if (*stack == NULL)
+	if (!stack)
 		return (min);
-	min = *stack;
-	(*stack) = (*stack)->next;
-	while (*(stack) != NULL)
+	min = stack;
+	stack = stack->next;
+	while (stack != NULL)
 	{
-		if (min->value > (*stack)->value)
-			min = (*stack);
-		(*stack) = (*stack)->next;
+		if (min->value > stack->value)
+			min = stack;
+		stack = stack->next;
 	}
 	return (min);
 }

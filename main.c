@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:52:18 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/29 22:18:23 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/30 10:27:51 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	a = init_stack(ac, av);
 	if (!a)
 	{
-		printf(RED"error: stack_a is empty\n"RESET);
+		printf(RED "error: stack_a is empty\n" RESET);
 		return (0);
 	}
 	if (!check_sort(a))
@@ -31,10 +31,10 @@ int	main(int ac, char **av)
 			ft_sa(&a);
 		else if (stack_len(a) == 3)
 			ft_sort3(&a);
-		if(!b)
+		if (!b)
 			init_b(&a, &b);
 		atob(&a, &b);
 	}
-	btoa(&a,&b);
+	// btoa(&a,&b);
 	ft_free_stack(&a);
 }
