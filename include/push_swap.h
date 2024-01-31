@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/30 12:02:42 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:24:15 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void				bring_b2top(t_stack *current, t_stack **stackb);
 void				init_b(t_stack **a, t_stack **b);
 void				init_cheapest(t_stack *stack);
 void				printstack(t_stack **stack);
+// void				final_swaps(t_stack **a);
 
 #endif

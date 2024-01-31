@@ -6,14 +6,26 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:59:15 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/30 23:34:10 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:05:31 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// void	final_swaps(t_stack **a)
+// {
+// 	while(ft_find_max(*a)->index != stack_len(*a)-1)
+// 	{
+// 			if(ft_find_max(*a)->under_median == 1)
+// 				ft_rra(a);
+// 			else
+// 				ft_ra(a);
+// 	}
+// }
+
 void	ft_sort3(t_stack **a)
 {
+	printf("entered\n");
 	int	value1;
 	int	value2;
 	int	value3;

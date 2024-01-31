@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:01:58 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/01/30 11:19:56 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/01/31 15:16:58 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	indexing(t_stack **stack)
 void	find_target_nodea(t_stack **a, t_stack **b)
 // closest inferior target node -> smallest positive difference
 {
-	t_stack *currentA;
-	t_stack *currentB;
-	t_stack *closestInferiorNode;
-	int valDiff;
-	int maxDiff;
+	t_stack 	*currentA;
+	t_stack 	*currentB;
+	t_stack 	*closestInferiorNode;
+	int 		valDiff;
+	int 		maxDiff;
 
 	if (!(*a) || !(*b))
 	{
@@ -63,7 +63,6 @@ void	find_target_nodea(t_stack **a, t_stack **b)
 		while (currentB)
 		{
 			valDiff = currentA->value - currentB->value;
-			// printf("node: [%d], value [%d]\n", currentA->value, valDiff);
 			if (valDiff > 0 && valDiff < maxDiff)
 			{
 				closestInferiorNode = currentB;
@@ -85,11 +84,11 @@ void	find_target_nodea(t_stack **a, t_stack **b)
 void	find_target_nodeb(t_stack **a, t_stack **b)
 // closest superior target node -> smallest negative difference
 {
-	t_stack *currentA;
-	t_stack *currentB;
-	t_stack *closestSuperiorNode;
-	int valDiff;
-	int minDiff;
+	t_stack 	*currentA;
+	t_stack 	*currentB;
+	t_stack		*closestSuperiorNode;
+	int			valDiff;
+	int 		minDiff;
 
 	if (!(*a) || !(*b))
 	{
@@ -106,7 +105,6 @@ void	find_target_nodeb(t_stack **a, t_stack **b)
 		while (currentA != NULL)
 		{
 			valDiff = currentB->value - currentA->value;
-			// printf("node: [%d], value [%d]\n", currentB->value, valDiff);
 			if (valDiff < 0 && valDiff > minDiff)
 			{
 				closestSuperiorNode = currentA;
@@ -129,21 +127,19 @@ int	push_cost_node(t_stack *node, int stacklen)
 {
 	int	pushup_node;
 
-	// printf("[calculating push cost...]\n");
 	if (node == NULL)
 		return (0);
 	else if (node->under_median == 1)
 		pushup_node = stacklen - (node->index);
 	else
 		pushup_node = node->index;
-	// printf("push cost [%d]: %d\n", node->value, pushup_node);
 	return (pushup_node);
 }
 
 int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 {
-	int		total_cost;
-	t_stack	*current;
+	int			total_cost;
+	t_stack		*current;
 
 	current = (*stack);
 	printf("[calculating total cost...]\n");
@@ -153,7 +149,6 @@ int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 		total_cost = push_cost_node(current, stacklenA)
 			+ push_cost_node(current->target_node, stacklenB);
 		current->push_cost = total_cost;
-		// printf("total cost [%d]: %d\n", current->value, total_cost);
 		current = current->next;
 	}
 	return (total_cost);

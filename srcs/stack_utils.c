@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:53:53 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/30 23:09:02 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:27:56 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ int	stack_len(t_stack *stack)
 }
 
 // checks if stack is sort
-bool	check_sort(t_stack *stack)
+//returns 1 if stack is sort, 0 if not
+bool	check_sort(t_stack *stack) //check crescendo
 {
 	if (!stack)
 		return (1);
-	while (stack->next)
+	while (stack->next != NULL)
 	{
-		if (stack->value > stack->next->value)
+		if (stack->value < stack->next->value)
 			stack = stack->next;
 		else
 			return (0);

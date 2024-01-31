@@ -6,7 +6,7 @@
 /*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/30 23:37:54 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:54:51 by louismdv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,63 @@
 //- swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements).
 void	ft_sa(t_stack **a)
 {
-	t_stack	*newhead;
+	t_stack	*tmp;
+	t_stack	*third;
 
-	printstack(a);
 	if (!(*a) || !(*a)->next)
 		return ;
-	newhead = (*a)->next;
-	(*a)->next = newhead->next;
-	newhead->next = (*a);
-	(*a)->prev = newhead;
-	newhead->prev = NULL;
-	*a = newhead;
+	tmp = (*a);
+	if(stack_len(*a) > 2)
+	{
+		third = ft_lst_last(*a);
+		(*a) = (*a)->next;
+		tmp->next = third;
+		(*a)->next = tmp;
+		tmp->prev = (*a);
+		third->prev = tmp;
+		(*a)->prev = NULL;
+	}
+	else
+	{	
+		(*a) = (*a)->next;
+		(*a)->next = tmp;
+		(*a)->prev = NULL;
+		tmp->prev = (*a);
+		tmp->next = NULL;
+	}
 	printstack(a);
 	write(1, "sa\n", 3);
 }
 
 // sb: swap b
 //- swap the first 2 nodes at the top of stack b. Do nothing if there is only one or no nodes).
-void	ft_sb(t_stack **b)
+void	ft_sb(t_stack **a)
 {
-	t_stack	*newhead;
+	t_stack	*tmp;
+	t_stack	*third;
 
-	printstack(b);
-	if (!(*b) || !(*b)->next)
+	if (!(*a) || !(*a)->next)
 		return ;
-	newhead = (*b)->next;
-	(*b)->next = newhead->next;
-	newhead->next = (*b);
-	(*b)->prev = newhead;
-	newhead->prev = NULL;
-	*b = newhead;
-	printstack(b);
+	tmp = (*a);
+	if(stack_len(*a) > 2)
+	{
+		third = ft_lst_last(*a);
+		(*a) = (*a)->next;
+		tmp->next = third;
+		(*a)->next = tmp;
+		tmp->prev = (*a);
+		third->prev = tmp;
+		(*a)->prev = NULL;
+	}
+	else
+	{
+		(*a) = (*a)->next;
+		(*a)->next = tmp;
+		(*a)->prev = NULL;
+		tmp->prev = (*a);
+		tmp->next = NULL;
+	}
+	printstack(a);
 	write(1, "sb\n", 3);
 }
 
@@ -171,6 +197,7 @@ void	ft_rr(t_stack **a, t_stack **b)
 //- shift down all the nodes of a by 1. The last node becomes the first one.
 void ft_rra(t_stack **a)
 {
+	printstack(a);
     if (!*a || !(*a)->next)
         return;
 	t_stack *newfirst;
@@ -182,6 +209,7 @@ void ft_rra(t_stack **a)
 	newfirst->prev = NULL;
 	last->next = NULL;
 	*a = newfirst;
+	printstack(a);
     write(1, "rra\n", 4);
 }
 
