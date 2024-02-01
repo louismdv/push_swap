@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/31 18:24:59 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:23:14 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	cheapest(t_stack **stack)
+t_stack	*cheapest(t_stack **stack)
 {
 	t_stack	*current1;
 	t_stack	*current2;
 	t_stack	*ptr_cheapest;
 
-	printf("[searching cheapest node...]\n");
+	// printf("[searching cheapest node...]\n");
 	current1 = (*stack);
 	ptr_cheapest = current1;
 	while (current1 != NULL)
@@ -37,19 +37,21 @@ void	cheapest(t_stack **stack)
 	current1 = (*stack);
 	while (current1 != NULL)
 	{
-		printf("node value: [%d]-> cheapest: [%d]\n",
-			current1->value, current1->cheapest);
+		// printf("node value: [%d]-> cheapest: [%d]\n", current1->value,
+		/* 	current1->cheapest); */
 		current1 = current1->next;
 	}
-	printf("\n");
+	// printf("\n");
+	return (ptr_cheapest);
 }
 
-void	init_cheapest(t_stack *stack)
+void	init_cheap_target(t_stack *stack)
 {
 	if (!stack)
 		return ;
 	while (stack)
 	{
+		stack->target_node = 0;
 		stack->cheapest = 0;
 		stack = stack->next;
 	}
@@ -57,42 +59,72 @@ void	init_cheapest(t_stack *stack)
 
 void	init_b(t_stack **a, t_stack **b)
 {
-	ft_pb(a, b);
-	ft_pb(a, b);
-	if ((*b)->next == NULL)
-		return ;
-	else if (check_sort(*b) == 1) //make decr
-		ft_sb(b);
+	if (stack_len(*a) > 3 && !check_sort(*a))
+		ft_pb(a, b);
+	if (stack_len(*a) > 3 && !check_sort(*a))
+		ft_pb(a, b);
 }
 
 void	bring_a2top(t_stack *currentA, t_stack **a)
 {
-	int targetIndex;
-
-	targetIndex = currentA->index;
 	if (!currentA || currentA->index == 0)
 		return ;
-	while ((*a)->index != targetIndex)
+	while (currentA->index != 0)
 	{
-		if (currentA->under_median == 1)
+		// printf(GREEN "currentA index:%d et target_index: %d\n" RESET,
+		// currentA->index, currentA->target_node->index);
+		if (currentA->under_median == true)
+		{
+			// printf("under_median: %d, currentA value: %d\n",
+			// currentA->under_median, currentA->value);
 			ft_rra(a);
+		}
 		else
-			ft_sa(a);
+			ft_ra(a);
 		indexing(a);
+	}
+}
+
+void	bringToTop(t_stack **stack, t_stack *top_node, char name)
+{
+	while (*stack != top_node)
+	{
+		if (name == 'a')
+		{
+			if (!top_node->under_median)
+				ft_ra(stack);
+			else
+				ft_rra(stack);
+		}
+		else if (name == 'b')
+		{
+			if (!top_node->under_median)
+				ft_rb(stack);
+			else
+				ft_rrb(stack);
+		}
 	}
 }
 
 void	bring_b2top(t_stack *currentB, t_stack **b)
 {
-	if (!currentB || currentB->index == 0)
+	int	targetIndex;
+
+	printf("entered");
+	if (!currentB || currentB->index == 0 || !(*b))
+	{
+		printf("exited");
 		return ;
+	}
+	targetIndex = currentB->index;
 	while (currentB->index != 0)
 	{
 		if (currentB->under_median == 1)
 			ft_rrb(b);
 		else
-			ft_sb(b);
+			ft_rb(b);
 		indexing(b);
+		break ;
 	}
 }
 
@@ -101,10 +133,22 @@ void	printstack(t_stack **stack)
 	t_stack	*current;
 
 	current = *stack;
-	while (current != NULL)
+	if (current->target_node != NULL)
 	{
-		printf("|_ node value: [%d]\n", current->value);
-		current = current->next;
+		while (current != NULL)
+		{
+			printf("%d\n", current->value);
+			current = current->next;
+		}
 	}
-	printf("\n");
+	else
+	{
+		while (current != NULL)
+		{
+			printf("|_ node value: [%d], cheapflag: [%d]\n", current->value,
+				current->cheapest);
+			current = current->next;
+		}
+	}
+	// printf("\n");
 }

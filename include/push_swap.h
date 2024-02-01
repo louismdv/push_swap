@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/31 12:24:15 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:10:55 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,18 @@ bool				check_sort(t_stack *stack);
 t_stack				*ft_find_max(t_stack *stack);
 t_stack				*ft_find_min(t_stack *stack);
 void				indexing(t_stack **stack);
-
 void				find_target_nodeb(t_stack **a, t_stack **b);
 void				find_target_nodea(t_stack **s1, t_stack **s2);
-
 int					push_cost_node(t_stack *node, int stacklen);
 int					total_cost(t_stack **a, int stacklenA, int stacklenB);
-void				cheapest(t_stack **stack);
+t_stack				*cheapest(t_stack **stack);
 void				atob(t_stack **a, t_stack **b);
 void				btoa(t_stack **a, t_stack **b);
 void				bring_a2top(t_stack *current, t_stack **stacka);
 void				bring_b2top(t_stack *current, t_stack **stackb);
-
 void				init_b(t_stack **a, t_stack **b);
-void				init_cheapest(t_stack *stack);
+void				init_cheap_target(t_stack *stack);
 void				printstack(t_stack **stack);
-// void				final_swaps(t_stack **a);
+void				bringToTop(t_stack **stack, t_stack *top_node, char name);
 
 #endif

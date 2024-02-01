@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/31 18:54:51 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:45:41 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_sa(t_stack **a)
 	if (!(*a) || !(*a)->next)
 		return ;
 	tmp = (*a);
-	if(stack_len(*a) > 2)
+	if (stack_len(*a) > 2)
 	{
 		third = ft_lst_last(*a);
 		(*a) = (*a)->next;
@@ -33,14 +33,14 @@ void	ft_sa(t_stack **a)
 		(*a)->prev = NULL;
 	}
 	else
-	{	
+	{
 		(*a) = (*a)->next;
 		(*a)->next = tmp;
 		(*a)->prev = NULL;
 		tmp->prev = (*a);
 		tmp->next = NULL;
 	}
-	printstack(a);
+	//printstack(a);
 	write(1, "sa\n", 3);
 }
 
@@ -54,7 +54,7 @@ void	ft_sb(t_stack **a)
 	if (!(*a) || !(*a)->next)
 		return ;
 	tmp = (*a);
-	if(stack_len(*a) > 2)
+	if (stack_len(*a) > 2)
 	{
 		third = ft_lst_last(*a);
 		(*a) = (*a)->next;
@@ -72,7 +72,7 @@ void	ft_sb(t_stack **a)
 		tmp->prev = (*a);
 		tmp->next = NULL;
 	}
-	printstack(a);
+	////printstack(a);
 	write(1, "sb\n", 3);
 }
 
@@ -96,7 +96,7 @@ void	ft_pa(t_stack **a, t_stack **b)
 	{
 		*a = *b;
 		*b = (*b)->next;
-		if(*b)
+		if (*b)
 			(*b)->prev = NULL;
 		(*a)->next = NULL;
 	}
@@ -105,7 +105,7 @@ void	ft_pa(t_stack **a, t_stack **b)
 		tmp = *a;
 		*a = *b;
 		*b = (*b)->next;
-		if(*b)
+		if (*b)
 			(*b)->prev = NULL;
 		(*a)->next = tmp;
 		tmp->prev = *a;
@@ -126,9 +126,9 @@ void	ft_pb(t_stack **a, t_stack **b)
 	{
 		*b = *a;
 		*a = (*a)->next;
-		if(*a)
+		if (*a)
 			(*a)->prev = NULL;
-		(*b)->prev = NULL;	
+		(*b)->prev = NULL;
 		(*b)->next = NULL;
 	}
 	else
@@ -136,7 +136,7 @@ void	ft_pb(t_stack **a, t_stack **b)
 		tmp = *b;
 		*b = *a;
 		*a = (*a)->next;
-		if(*a)
+		if (*a)
 			(*a)->prev = NULL;
 		(*b)->next = tmp;
 		tmp->prev = *b;
@@ -155,8 +155,9 @@ void	ft_ra(t_stack **a)
 	*a = ft_lst_last(*a);
 	(*a)->next = tmp;
 	tmp->prev = *a;
-	*a = tmp->next; //revoit *a pointer sur le deuxieme element de la chaine
-	tmp->next = NULL; // avant de couper le premier element du reste de la chaine
+	*a = tmp->next;   // revoit *a pointer sur le deuxieme element de la chaine
+	tmp->next = NULL;
+		// avant de couper le premier element du reste de la chaine
 	(*a)->prev = NULL;
 	write(1, "ra\n", 3);
 }
@@ -195,36 +196,37 @@ void	ft_rr(t_stack **a, t_stack **b)
 
 // rra: reverse rotate a
 //- shift down all the nodes of a by 1. The last node becomes the first one.
-void ft_rra(t_stack **a)
+void	ft_rra(t_stack **a)
 {
-	printstack(a);
-    if (!*a || !(*a)->next)
-        return;
-	t_stack *newfirst;
+	t_stack	*newfirst;
 	t_stack	*last;
+
+	////printstack(a);
+	if (!*a || !(*a)->next)
+		return ;
 	last = ft_lst_last(*a)->prev;
-    newfirst = ft_lst_last(*a);
-    newfirst->next = *a;
+	newfirst = ft_lst_last(*a);
+	newfirst->next = *a;
 	(*a)->prev = newfirst;
 	newfirst->prev = NULL;
 	last->next = NULL;
 	*a = newfirst;
-	printstack(a);
-    write(1, "rra\n", 4);
+	//printstack(a);
+	write(1, "rra\n", 4);
 }
-
 
 // rrb: reverse rotate b
 //- shift down all the nodes of b by 1. The last node becomes the first one.
 void	ft_rrb(t_stack **b)
 {
-    if (!*b || !(*b)->next)
-        return;
-	t_stack *newfirst;
+	t_stack	*newfirst;
 	t_stack	*last;
+
+	if (!*b || !(*b)->next)
+		return ;
 	last = ft_lst_last(*b)->prev;
-    newfirst = ft_lst_last(*b);
-    newfirst->next = *b;
+	newfirst = ft_lst_last(*b);
+	newfirst->next = *b;
 	(*b)->prev = newfirst;
 	newfirst->prev = NULL;
 	last->next = NULL;

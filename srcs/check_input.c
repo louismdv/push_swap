@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:35:24 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/01/30 10:46:25 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:45:21 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_num(char *str, int size)
 			j++;
 		else
 		{
-			printf("not digit\n");
+			//printf("not digit\n");
 			return (0);
 		}
 	}
@@ -48,7 +48,7 @@ int	check_dup(int *tab, int size)
 				j++;
 			if (tab[i] == tab[j])
 			{
-				printf("dup\n");
+				//printf("dup\n");
 				return (0);
 			}
 			j++;
@@ -63,7 +63,7 @@ int	check_dup(int *tab, int size)
 // 	if (ac != 2)
 // 		return (0);
 // 	if (check_num(av[1], ft_strlen(av[1])) != 1)
-// 		printf("not integer\n");
+// 		//printf("not integer\n");
 // 	else
 // 		printf("integer\n");
 // 	return (0);

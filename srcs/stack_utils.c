@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:53:53 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/31 16:27:56 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:11:56 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ int	stack_len(t_stack *stack)
 }
 
 // checks if stack is sort
-//returns 1 if stack is sort, 0 if not
-bool	check_sort(t_stack *stack) //check crescendo
+// returns 1 if stack is sort, 0 if not
+bool	check_sort(t_stack *stack) // check crescendo
 {
 	if (!stack)
-		return (1);
+		return (false);
 	while (stack->next != NULL)
 	{
 		if (stack->value < stack->next->value)
 			stack = stack->next;
 		else
-			return (0);
+			return (false);
 	}
-	return (1);
+	return (true);
 }
 
 // free memory locations of each node in stack
