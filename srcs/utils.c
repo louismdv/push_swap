@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 12:29:36 by louis            ###   ########.fr       */
+/*   Updated: 2024/02/05 17:12:06 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 t_stack	*cheapest(t_stack **stack)
 {
@@ -80,17 +80,26 @@ void	bringToTop1(t_stack **stack, t_stack *top_node, char name)
 	}
 }
 
-void    bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB)
+void	bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB)
 {
-    if (*a != top_nodeA && *b != top_nodeB)
-    {
-        while (!top_nodeA->under_median && !top_nodeB->under_median)
-            ft_rr(a, b);
-        while (top_nodeA->under_median && top_nodeB->under_median)
-            ft_rrr(a, b);
-		bringToTop1(a, top_nodeA, 'a');
-		bringToTop1(b, top_nodeB, 'b');
-    }
+	while (*a != top_nodeA && *b != top_nodeB)
+	{
+		if (!top_nodeA->under_median && !top_nodeB->under_median)
+			ft_rr(a, b);
+		else if (top_nodeA->under_median && top_nodeB->under_median)
+			ft_rrr(a, b);
+		else if (!top_nodeA->under_median && top_nodeB->under_median)
+		{
+			ft_ra(a);
+			ft_rrb(b);
+		}
+		else if (top_nodeA->under_median && !top_nodeB->under_median)
+		{
+			ft_rra(a);
+			ft_rb(b);
+		}
+		
+	}
 }
 
 void	printstack(t_stack **stack)
@@ -102,7 +111,8 @@ void	printstack(t_stack **stack)
 	{
 		while (current != NULL)
 		{
-			printf("value %d, target node: %d\n", current->value, current->target_node->value );
+			printf("value %d, target node: %d\n", current->value,
+				current->target_node->value);
 			current = current->next;
 		}
 	}

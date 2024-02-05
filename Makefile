@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 11:17:41 by louismdv          #+#    #+#              #
-#    Updated: 2024/01/29 14:03:04 by louismdv         ###   ########.fr        #
+#    Updated: 2024/02/05 17:08:40 by lmerveil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME 		= 	push_swap.a
 EXECUTABLE	= 	push_swap
 
 CC 			= 	cc
-CFLAGS 		= 	-Wall -Wextra -Werror -I include -g3
+CFLAGS 		= 	-Wall -Wextra -Werror -I./include -g3
 
 RED			= 	$(shell tput setaf 1)
 GREEN		= 	$(shell tput setaf 2)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 12:03:19 by louis            ###   ########.fr       */
+/*   Updated: 2024/02/05 17:11:59 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 // sa: swap a
 //- swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements).
@@ -153,9 +153,9 @@ void	ft_ra(t_stack **a)
 	*a = ft_lst_last(*a);
 	(*a)->next = tmp;
 	tmp->prev = *a;
-	*a = tmp->next;   // revoit *a pointer sur le deuxieme element de la chaine
+	*a = tmp->next; // revoit *a pointer sur le deuxieme element de la chaine
 	tmp->next = NULL;
-		// avant de couper le premier element du reste de la chaine
+	// avant de couper le premier element du reste de la chaine
 	(*a)->prev = NULL;
 	write(1, "ra\n", 3);
 }
@@ -181,14 +181,31 @@ void	ft_rb(t_stack **b)
 // rr: ra and rb at the same time.
 void	ft_rr(t_stack **a, t_stack **b)
 {
-	if (!(*a) || !((*a)->next))
+	t_stack	*tmp;
+
+	if ((!(*a) || !((*a)->next)) && (!(*b) || !((*b)->next)))
 		return ;
 	else
-		ft_ra(a);
-	if (!(*b) || !((*b)->next))
-		return ;
-	else
-		ft_rb(b);
+	{
+		tmp = *a;
+		if (!(*a) || !((*a)->next))
+			return ;
+		*a = ft_lst_last(*a);
+		(*a)->next = tmp;
+		tmp->prev = *a;
+		*a = tmp->next;
+		tmp->next = NULL;
+		(*a)->prev = NULL;
+		tmp = *b;
+		if (!(*b) || !((*b)->next))
+			return ;
+		*b = ft_lst_last(*b);
+		(*b)->next = tmp;
+		tmp->prev = *b;
+		*b = tmp->next;
+		tmp->next = NULL;
+		(*b)->prev = NULL;
+	}
 	write(1, "rr\n", 3);
 }
 
@@ -233,7 +250,28 @@ void	ft_rrb(t_stack **b)
 // rrr: rra and rrb at the same time.
 void	ft_rrr(t_stack **a, t_stack **b)
 {
-	ft_rra(a);
-	ft_rrb(b);
+	t_stack	*newfirstA;
+	t_stack	*lastA;
+	t_stack	*newfirstB;
+	t_stack	*lastB;
+
+	if (!*a || !(*a)->next)
+		return ;
+	lastA = ft_lst_last(*a)->prev;
+	newfirstA = ft_lst_last(*a);
+	newfirstA->next = *a;
+	(*a)->prev = newfirstA;
+	newfirstA->prev = NULL;
+	lastA->next = NULL;
+	*a = newfirstA;
+	if (!*b || !(*b)->next)
+		return ;
+	lastB = ft_lst_last(*b)->prev;
+	newfirstB = ft_lst_last(*b);
+	newfirstB->next = *b;
+	(*b)->prev = newfirstB;
+	newfirstB->prev = NULL;
+	lastB->next = NULL;
+	*b = newfirstB;
 	write(1, "rrr\n", 4);
 }

@@ -6,11 +6,11 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:35:24 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/01 14:45:21 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:45:28 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	check_num(char *str, int size)
 {
@@ -24,10 +24,7 @@ int	check_num(char *str, int size)
 		else if (ft_isdigit(str[j]))
 			j++;
 		else
-		{
-			//printf("not digit\n");
 			return (0);
-		}
 	}
 	return (1);
 }
@@ -47,10 +44,7 @@ int	check_dup(int *tab, int size)
 			if (tab[j] == ' ' || tab[i] == ' ')
 				j++;
 			if (tab[i] == tab[j])
-			{
-				//printf("dup\n");
 				return (0);
-			}
 			j++;
 		}
 		i++;

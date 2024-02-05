@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:01:58 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/05 11:50:39 by louis            ###   ########.fr       */
+/*   Updated: 2024/02/05 17:13:52 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	indexing(t_stack **stack)
 {
@@ -34,6 +34,7 @@ void	indexing(t_stack **stack)
 		indexgo++;
 	}
 }
+
 void	find_target_nodea(t_stack **a, t_stack **b)
 // closest inferior target node -> smallest positive difference
 {
@@ -88,7 +89,7 @@ void	find_target_nodeb(t_stack **a, t_stack **b)
 		minDiff = INT_MIN;
 		while (currentA != NULL)
 		{
-			valDiff = currentB->value - currentA->value ;
+			valDiff = currentB->value - currentA->value;
 			if (valDiff < 0 && valDiff > minDiff)
 			{
 				closestSuperiorNode = currentA;
@@ -123,7 +124,6 @@ int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 	t_stack	*current;
 
 	current = (*stack);
-	// printf("[calculating total cost...]\n");
 	total_cost = 0;
 	while (current != NULL)
 	{

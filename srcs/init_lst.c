@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_lst.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:46:22 by louismdv          #+#    #+#             */
-/*   Updated: 2024/01/24 22:51:32 by louismdv         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:12:12 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 // This func creates a newnode with the content of tab[i]
 // and adds it to the end of the stack_a list.
