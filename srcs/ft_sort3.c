@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:59:15 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/01 14:20:14 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:00:34 by louis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_sort3(t_stack **a)
 {
-	printf("entered\n");
 	int	value1;
 	int	value2;
 	int	value3;

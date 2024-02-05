@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/01 18:23:14 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:29:36 by louis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_stack	*cheapest(t_stack **stack)
 	t_stack	*current2;
 	t_stack	*ptr_cheapest;
 
-	// printf("[searching cheapest node...]\n");
 	current1 = (*stack);
 	ptr_cheapest = current1;
 	while (current1 != NULL)
@@ -36,12 +35,7 @@ t_stack	*cheapest(t_stack **stack)
 		ptr_cheapest->cheapest = 1;
 	current1 = (*stack);
 	while (current1 != NULL)
-	{
-		// printf("node value: [%d]-> cheapest: [%d]\n", current1->value,
-		/* 	current1->cheapest); */
 		current1 = current1->next;
-	}
-	// printf("\n");
 	return (ptr_cheapest);
 }
 
@@ -65,29 +59,9 @@ void	init_b(t_stack **a, t_stack **b)
 		ft_pb(a, b);
 }
 
-void	bring_a2top(t_stack *currentA, t_stack **a)
+void	bringToTop1(t_stack **stack, t_stack *top_node, char name)
 {
-	if (!currentA || currentA->index == 0)
-		return ;
-	while (currentA->index != 0)
-	{
-		// printf(GREEN "currentA index:%d et target_index: %d\n" RESET,
-		// currentA->index, currentA->target_node->index);
-		if (currentA->under_median == true)
-		{
-			// printf("under_median: %d, currentA value: %d\n",
-			// currentA->under_median, currentA->value);
-			ft_rra(a);
-		}
-		else
-			ft_ra(a);
-		indexing(a);
-	}
-}
-
-void	bringToTop(t_stack **stack, t_stack *top_node, char name)
-{
-	while (*stack != top_node)
+	while (top_node != *stack)
 	{
 		if (name == 'a')
 		{
@@ -106,26 +80,17 @@ void	bringToTop(t_stack **stack, t_stack *top_node, char name)
 	}
 }
 
-void	bring_b2top(t_stack *currentB, t_stack **b)
+void    bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB)
 {
-	int	targetIndex;
-
-	printf("entered");
-	if (!currentB || currentB->index == 0 || !(*b))
-	{
-		printf("exited");
-		return ;
-	}
-	targetIndex = currentB->index;
-	while (currentB->index != 0)
-	{
-		if (currentB->under_median == 1)
-			ft_rrb(b);
-		else
-			ft_rb(b);
-		indexing(b);
-		break ;
-	}
+    if (*a != top_nodeA && *b != top_nodeB)
+    {
+        while (!top_nodeA->under_median && !top_nodeB->under_median)
+            ft_rr(a, b);
+        while (top_nodeA->under_median && top_nodeB->under_median)
+            ft_rrr(a, b);
+		bringToTop1(a, top_nodeA, 'a');
+		bringToTop1(b, top_nodeB, 'b');
+    }
 }
 
 void	printstack(t_stack **stack)
@@ -137,7 +102,7 @@ void	printstack(t_stack **stack)
 	{
 		while (current != NULL)
 		{
-			printf("%d\n", current->value);
+			printf("value %d, target node: %d\n", current->value, current->target_node->value );
 			current = current->next;
 		}
 	}

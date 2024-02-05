@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/01 18:10:55 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:24:37 by louis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void				bring_b2top(t_stack *current, t_stack **stackb);
 void				init_b(t_stack **a, t_stack **b);
 void				init_cheap_target(t_stack *stack);
 void				printstack(t_stack **stack);
-void				bringToTop(t_stack **stack, t_stack *top_node, char name);
+void				bringToTop1(t_stack **stack, t_stack *top_node, char name);
+void    			bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB);
 
 #endif

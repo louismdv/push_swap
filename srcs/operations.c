@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/01 14:45:41 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:03:19 by louis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_sa(t_stack **a)
 		tmp->prev = (*a);
 		tmp->next = NULL;
 	}
-	//printstack(a);
 	write(1, "sa\n", 3);
 }
 
@@ -72,7 +71,6 @@ void	ft_sb(t_stack **a)
 		tmp->prev = (*a);
 		tmp->next = NULL;
 	}
-	////printstack(a);
 	write(1, "sb\n", 3);
 }
 
@@ -201,7 +199,6 @@ void	ft_rra(t_stack **a)
 	t_stack	*newfirst;
 	t_stack	*last;
 
-	////printstack(a);
 	if (!*a || !(*a)->next)
 		return ;
 	last = ft_lst_last(*a)->prev;
@@ -211,7 +208,6 @@ void	ft_rra(t_stack **a)
 	newfirst->prev = NULL;
 	last->next = NULL;
 	*a = newfirst;
-	//printstack(a);
 	write(1, "rra\n", 4);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   btoa.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:49:28 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/01 18:39:19 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:24:52 by louis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	btoa(t_stack **a, t_stack **b)
 {
-	while ((*b)->next)
+	while (*b != NULL)
 	{
 		indexing(a);
 		indexing(b);
 		find_target_nodeb(a, b);
-		bringToTop(a, (*b)->target_node, 'a');
+		bringToTop1(a, (*b)->target_node, 'a');
 		ft_pa(a, b);
-		*b = (*b)->next;
+		if(*b == NULL)
+			return ;
 	}
 }

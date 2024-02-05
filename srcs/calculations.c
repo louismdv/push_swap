@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louis <louis@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:01:58 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/01 17:35:56 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/05 11:50:39 by louis            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void	indexing(t_stack **stack)
 	current = (*stack);
 	median = stack_len(current) / 2;
 	indexgo = 0;
-	// printf("[indexing...]\n");
 	if (current == NULL)
 		return ;
-	// printf("stacklen: %d, median: %d\n", stack_len(current), median);
 	while (current != NULL)
 	{
 		current->index = indexgo;
@@ -32,12 +30,9 @@ void	indexing(t_stack **stack)
 			current->under_median = true;
 		else
 			current->under_median = false;
-		// printf("Node value: [%d]-> index: [%d]\n", current->value,
-		// 	current->index);
 		current = current->next;
 		indexgo++;
 	}
-	// printf("\n");
 }
 void	find_target_nodea(t_stack **a, t_stack **b)
 // closest inferior target node -> smallest positive difference
@@ -49,12 +44,8 @@ void	find_target_nodea(t_stack **a, t_stack **b)
 	int maxDiff;
 
 	if (!(*a) || !(*b))
-	{
-		// printf("[One of the stacks is empty.]\n");
 		return ;
-	}
 	currentA = (*a);
-	// printf(GREEN "[finding target nodes for stackA...]\n" RESET);
 	while (currentA != NULL)
 	{
 		currentB = (*b);
@@ -74,11 +65,8 @@ void	find_target_nodea(t_stack **a, t_stack **b)
 			currentA->target_node = closestInferiorNode;
 		else
 			currentA->target_node = ft_find_max(*b);
-		// printf("node value: [%d]-> target index [%d]\n", currentA->value,
-		/* currentA->target_node->index); */
 		currentA = currentA->next;
 	}
-	// printf("\n");
 }
 
 void	find_target_nodeb(t_stack **a, t_stack **b)
@@ -91,12 +79,8 @@ void	find_target_nodeb(t_stack **a, t_stack **b)
 	int minDiff;
 
 	if (!(*a) || !(*b))
-	{
-		// printf(RED "[stackB is empty.]\n" RESET);
 		return ;
-	}
 	currentB = (*b);
-	// printf(GREEN "[finding target nodes for stackB...]\n" RESET);
 	while (currentB != NULL)
 	{
 		currentA = (*a);
@@ -104,7 +88,7 @@ void	find_target_nodeb(t_stack **a, t_stack **b)
 		minDiff = INT_MIN;
 		while (currentA != NULL)
 		{
-			valDiff = currentB->value - currentA->value;
+			valDiff = currentB->value - currentA->value ;
 			if (valDiff < 0 && valDiff > minDiff)
 			{
 				closestSuperiorNode = currentA;
@@ -116,11 +100,8 @@ void	find_target_nodeb(t_stack **a, t_stack **b)
 			currentB->target_node = closestSuperiorNode;
 		else
 			currentB->target_node = ft_find_min(*a);
-		// printf("node value: [%d]-> target index [%d]\n", currentB->value,
-		/* currentB->target_node->index); */
 		currentB = currentB->next;
 	}
-	// printf("\n");
 }
 
 int	push_cost_node(t_stack *node, int stacklen)
@@ -149,7 +130,6 @@ int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 		total_cost = push_cost_node(current, stacklenA)
 			+ push_cost_node(current->target_node, stacklenB);
 		current->push_cost = total_cost;
-		printf("");
 		current = current->next;
 	}
 	return (total_cost);
