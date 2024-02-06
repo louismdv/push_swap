@@ -35,13 +35,12 @@ void	indexing(t_stack **stack)
 	}
 }
 
-void	find_target_nodea(t_stack **a, t_stack **b)
 // closest inferior target node -> smallest positive difference
+void	find_target_nodea(t_stack **a, t_stack **b)
 {
 	t_stack *currentA;
 	t_stack *currentB;
 	t_stack *closestInferiorNode;
-	int valDiff;
 	int maxDiff;
 
 	if (!(*a) || !(*b))
@@ -52,16 +51,7 @@ void	find_target_nodea(t_stack **a, t_stack **b)
 		currentB = (*b);
 		closestInferiorNode = NULL;
 		maxDiff = INT_MAX;
-		while (currentB)
-		{
-			valDiff = currentA->value - currentB->value;
-			if (valDiff > 0 && valDiff < maxDiff)
-			{
-				closestInferiorNode = currentB;
-				maxDiff = valDiff;
-			}
-			currentB = currentB->next;
-		}
+		closestInferiorNode = valdiffA(currentA, maxDiff, closestInferiorNode, currentB);
 		if (closestInferiorNode != NULL)
 			currentA->target_node = closestInferiorNode;
 		else
@@ -70,13 +60,12 @@ void	find_target_nodea(t_stack **a, t_stack **b)
 	}
 }
 
-void	find_target_nodeb(t_stack **a, t_stack **b)
 // closest superior target node -> smallest negative difference
+void	find_target_nodeb(t_stack **a, t_stack **b)
 {
 	t_stack *currentA;
 	t_stack *currentB;
 	t_stack *closestSuperiorNode;
-	int valDiff;
 	int minDiff;
 
 	if (!(*a) || !(*b))
@@ -87,7 +76,20 @@ void	find_target_nodeb(t_stack **a, t_stack **b)
 		currentA = (*a);
 		closestSuperiorNode = NULL;
 		minDiff = INT_MIN;
-		while (currentA != NULL)
+		closestSuperiorNode = valdiffB(currentA, minDiff, closestSuperiorNode, currentB);
+		if (closestSuperiorNode != NULL)
+			currentB->target_node = closestSuperiorNode;
+		else
+			currentB->target_node = ft_find_min(*a);
+		currentB = currentB->next;
+	}
+}
+
+t_stack	*valdiffB(t_stack *currentA, int minDiff, t_stack *closestSuperiorNode, t_stack *currentB)
+{
+	int valDiff;
+
+	while (currentA != NULL)
 		{
 			valDiff = currentB->value - currentA->value;
 			if (valDiff < 0 && valDiff > minDiff)
@@ -97,12 +99,24 @@ void	find_target_nodeb(t_stack **a, t_stack **b)
 			}
 			currentA = currentA->next;
 		}
-		if (closestSuperiorNode != NULL)
-			currentB->target_node = closestSuperiorNode;
-		else
-			currentB->target_node = ft_find_min(*a);
+	return(closestSuperiorNode);
+}
+
+t_stack	*valdiffA(t_stack *currentA, int maxDiff, t_stack *closestInferiorNode, t_stack *currentB)
+{
+	int valDiff;
+
+	while (currentB)
+	{
+		valDiff = currentA->value - currentB->value;
+		if (valDiff > 0 && valDiff < maxDiff)
+		{
+			closestInferiorNode = currentB;
+			maxDiff = valDiff;
+		}
 		currentB = currentB->next;
 	}
+	return(closestInferiorNode);
 }
 
 int	push_cost_node(t_stack *node, int stacklen)

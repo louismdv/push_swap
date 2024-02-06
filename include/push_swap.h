@@ -48,6 +48,8 @@ void				ft_error(void);
 void				free_split_result(char **result);
 int					check_intmax(long *tab, int size);
 int					ft_parse_int_checks(int ac, long *tab);
+int					ft_parse_quoted_checks(long *tab, int nums);
+long 				*spliting(char **av, int nums);
 
 // node manipulation
 t_stack				*ft_new_node(int content);
@@ -68,6 +70,8 @@ void				ft_rr(t_stack **a, t_stack **b);
 void				ft_rra(t_stack **a);
 void				ft_rrb(t_stack **b);
 void				ft_rrr(t_stack **a, t_stack **b);
+t_stack				*valdiffB(t_stack *currentA, int minDiff, t_stack *closestSuperiorNode, t_stack *currentB);
+t_stack				*valdiffA(t_stack *currentA, int maxDiff, t_stack *closestInferiorNode, t_stack *currentB);
 
 // algorithm
 void				ft_sort3(t_stack **a);

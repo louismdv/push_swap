@@ -6,7 +6,7 @@
 #    By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 11:17:41 by louismdv          #+#    #+#              #
-#    Updated: 2024/02/05 17:08:40 by lmerveil         ###   ########.fr        #
+#    Updated: 2024/02/07 00:13:58 by lmerveil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,12 +38,14 @@ SRCS		 = 	$(addsuffix .c,			\
 				$(addprefix stacking_,	\
 				atob					\
 				btoa					\
-				calculations			\
+				target_node				\
 				ft_sort3				\
-				operations				\
+				operations1				\
+				operations2				\
 				sortings				\
 				utils					\
 				)						\
+				calculations_push_cost	\
 				))						\
 
 OFILES		= 	$(SRCS:.c=.o)

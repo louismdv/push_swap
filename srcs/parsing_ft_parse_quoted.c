@@ -36,29 +36,46 @@ int	count_int(char *str)
 // 3. It creates a list of ints from the input.
 t_stack	*ft_parse_quoted(char **av)
 {
-	int		j;
 	long	*tab;
 	t_stack	*stack_a;
 	int		nums;
-	char	**av1;
 
 	tab = NULL;
 	stack_a = NULL;
-	// check nums + check count ints in av[1]
-	if (check_num(av[1], ft_strlen(av[1])) == 0 
-		|| count_int(av[1]) <= 1)
+	if (check_num(av[1], ft_strlen(av[1])) == 0 || count_int(av[1]) <= 1)
 	{
 		ft_error();
 		return (0);
 	}
 	nums = count_int(av[1]);
+	tab = spliting(av, nums);
+	if(ft_parse_quoted_checks(tab, nums) == 0)
+		return(0);
+	list_args(tab, &stack_a, nums);
+	free(tab);
+	return (stack_a);
+}
+
+int	ft_parse_quoted_checks(long *tab, int nums)
+{
+	if (check_dup(tab, nums) == 0 || check_intmax(tab, nums) == 0)
+	{
+		ft_error_free(tab);
+		return (0);
+	}
+	return(1);
+}
+
+long *spliting(char **av, int nums)
+{
+	char 	**av1;
+	int 	j;
+	long 	*tab;
+
 	av1 = ft_split(av[1], ' ');
 	tab = (long *)malloc(count_int(av[1]) * sizeof(long));
 	if (!tab)
-	{
-		free_split_result(av1);
-		return(stack_a);
-	}
+		return(0);
 	j = 0;
 	while (j < nums && av1[j])
 	{
@@ -66,13 +83,5 @@ t_stack	*ft_parse_quoted(char **av)
 		j++;
 	}
 	free_split_result(av1);
-	if (check_dup(tab, nums) == 0 
-		|| check_intmax(tab, nums) == 0) // checking dups
-	{
-		ft_error_free(tab);
-		return (0);
-	}
-	list_args(tab, &stack_a, nums);
-	free(tab);
-	return (stack_a);
+	return(tab);
 }
