@@ -38,7 +38,8 @@ void	atob(t_stack **a, t_stack **b)
 					if (currentA->cheapest == true)
 					{
 						Atarget = currentA->target_node;
-						bringToTop2(a, tcheapest, b, Atarget);
+						optimoves(a, tcheapest,b, Atarget);
+						// bringToTop2(a, tcheapest, b, Atarget);
 						bringToTop1(a, tcheapest, 'a');
 						bringToTop1(b, Atarget, 'b');
 						ft_pb(a, b);

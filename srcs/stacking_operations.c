@@ -45,42 +45,42 @@ void	ft_sa(t_stack **a)
 
 // sb: swap b
 //- swap the first 2 nodes at the top of stack b. Do nothing if there is only one or no nodes).
-void	ft_sb(t_stack **a)
-{
-	t_stack	*tmp;
-	t_stack	*third;
+// void	ft_sb(t_stack **a)
+// {
+// 	t_stack	*tmp;
+// 	t_stack	*third;
 
-	if (!(*a) || !(*a)->next)
-		return ;
-	tmp = (*a);
-	if (stack_len(*a) > 2)
-	{
-		third = ft_lst_last(*a);
-		(*a) = (*a)->next;
-		tmp->next = third;
-		(*a)->next = tmp;
-		tmp->prev = (*a);
-		third->prev = tmp;
-		(*a)->prev = NULL;
-	}
-	else
-	{
-		(*a) = (*a)->next;
-		(*a)->next = tmp;
-		(*a)->prev = NULL;
-		tmp->prev = (*a);
-		tmp->next = NULL;
-	}
-	write(1, "sb\n", 3);
-}
+// 	if (!(*a) || !(*a)->next)
+// 		return ;
+// 	tmp = (*a);
+// 	if (stack_len(*a) > 2)
+// 	{
+// 		third = ft_lst_last(*a);
+// 		(*a) = (*a)->next;
+// 		tmp->next = third;
+// 		(*a)->next = tmp;
+// 		tmp->prev = (*a);
+// 		third->prev = tmp;
+// 		(*a)->prev = NULL;
+// 	}
+// 	else
+// 	{
+// 		(*a) = (*a)->next;
+// 		(*a)->next = tmp;
+// 		(*a)->prev = NULL;
+// 		tmp->prev = (*a);
+// 		tmp->next = NULL;
+// 	}
+// 	write(1, "sb\n", 3);
+// }
 
-// ss: sa and sb at the same time.
-void	ft_ss(t_stack **a, t_stack **b)
-{
-	ft_sa(a);
-	ft_sb(b);
-	write(1, "ss\n", 3);
-}
+// // ss: sa and sb at the same time.
+// void	ft_ss(t_stack **a, t_stack **b)
+// {
+// 	ft_sa(a);
+// 	ft_sb(b);
+// 	write(1, "ss\n", 3);
+// }
 
 // pa: push to a
 //- take the first node at the top of b and put it at the top of a. Do nothing if b is empty.

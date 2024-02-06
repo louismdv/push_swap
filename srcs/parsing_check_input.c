@@ -29,7 +29,7 @@ int	check_num(char *str, int size)
 	return (1);
 }
 
-int	check_dup(int *tab, int size)
+int	check_dup(long *tab, int size)
 {
 	int	i;
 	int	j;
@@ -41,8 +41,6 @@ int	check_dup(int *tab, int size)
 		j = i + 1;
 		while (j < size)
 		{
-			if (tab[j] == ' ' || tab[i] == ' ')
-				j++;
 			if (tab[i] == tab[j])
 				return (0);
 			j++;
@@ -52,13 +50,16 @@ int	check_dup(int *tab, int size)
 	return (1);
 }
 
-// int	main(int ac, char *av[])
-// {
-// 	if (ac != 2)
-// 		return (0);
-// 	if (check_num(av[1], ft_strlen(av[1])) != 1)
-// 		//printf("not integer\n");
-// 	else
-// 		printf("integer\n");
-// 	return (0);
-// }
+int check_intmax(long *tab, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (tab[i] > 2147483647)
+			return (0);
+		i++;
+	}
+	return (1);
+}

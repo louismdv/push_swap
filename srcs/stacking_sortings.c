@@ -102,28 +102,46 @@ void	bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_node
 	}
 }
 
-void	printstack(t_stack **stack)
+void	optimoves(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB)
 {
-	t_stack	*current;
+	int	lenA;
+	int lenB;
+	int indexA;
+	int indexB;
 
-	current = *stack;
-	if (current->target_node != NULL)
+	int aboveA;
+	int underA;
+	int aboveB;
+	int underB;
+
+
+	lenA = stack_len(*a);
+	lenB = stack_len(*b);
+	indexA = top_nodeA->index;
+	indexB = top_nodeB->index;
+	
+	aboveA = indexA;
+	underA = lenA - indexA;
+
+	aboveB = indexB;
+	underB = lenB - indexB;
+
+	//topA index > topB index && A above median && b under median && aboveA + underB < aboveB
+	//----> rr(a,b);
+
+	if(!(top_nodeA->under_median) && (top_nodeB->under_median) && indexA < indexB)
 	{
-		while (current != NULL)
-		{
-			printf("value %d, target node: %d\n", current->value,
-				current->target_node->value);
-			current = current->next;
-		}
+		if(aboveA + underB < aboveB)
+			while(top_nodeA != *a)
+				ft_rr(a,b);
+		// if(aboveA < (indexA + aboveB))
+		// 	while(top_nodeA != *a)
+		// 		ft_rrr(a,b);
 	}
-	else
+	else if((top_nodeA->under_median) && !(top_nodeB->under_median) && indexA > indexB)
 	{
-		while (current != NULL)
-		{
-			printf("|_ node value: [%d], cheapflag: [%d]\n", current->value,
-				current->cheapest);
-			current = current->next;
-		}
+		if(underA + aboveB < aboveA)
+			while(top_nodeB != *b)
+				ft_rr(a,b);
 	}
-	// printf("\n");
 }

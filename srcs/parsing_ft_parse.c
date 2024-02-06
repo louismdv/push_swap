@@ -33,14 +33,14 @@ t_stack	*init_stack(int ac, char **av)
 		stack_a = ft_parse_int(ac, av);
 	return (stack_a);
 }
-void	ft_error_free(int *tab)
+void	ft_error_free(long *tab)
 {
 	free(tab);
-	printf("error\n");
+	printf("Error\n");
 }
 void	ft_error(void)
 {
-	printf("error\n");
+	printf("Error\n");
 }
 
 // error

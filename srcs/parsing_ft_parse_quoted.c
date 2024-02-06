@@ -37,7 +37,7 @@ int	count_int(char *str)
 t_stack	*ft_parse_quoted(char **av)
 {
 	int		j;
-	int		*tab;
+	long	*tab;
 	t_stack	*stack_a;
 	int		nums;
 	char	**av1;
@@ -50,20 +50,22 @@ t_stack	*ft_parse_quoted(char **av)
 		ft_error();
 		return (0);
 	}
-	tab = (int *)malloc(count_int(av[1]) * sizeof(int));
-	if (!tab)
-		return (stack_a);
 	nums = count_int(av[1]);
 	av1 = ft_split(av[1], ' ');
-	free(av);
+	tab = (long *)malloc(count_int(av[1]) * sizeof(long));
+	if (!tab)
+	{
+		free_split_result(av1);
+		return(stack_a);
+	}
 	j = 0;
 	while (j < nums && av1[j])
 	{
 		tab[j] = ft_atol(av1[j]);
 		j++;
 	}
-	free(av1);
-	if (check_dup(tab, nums) != 1) // checking dups
+	free_split_result(av1);
+	if (check_dup(tab, nums) == 0 || check_intmax(tab, nums) == 0) // checking dups
 	{
 		ft_error_free(tab);
 		return (0);

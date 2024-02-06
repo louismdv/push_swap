@@ -70,6 +70,7 @@ void	find_target_nodea(t_stack **a, t_stack **b)
 	}
 }
 
+
 void	find_target_nodeb(t_stack **a, t_stack **b)
 // closest superior target node -> smallest negative difference
 {

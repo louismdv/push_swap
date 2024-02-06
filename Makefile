@@ -25,23 +25,26 @@ LIBFT_PATH	=	./libft
 LIBFT_FILE	=	libft.a
 LIBFT_LIB	=	$(LIBFT_PATH)/$(LIBFT_FILE)
 
-SRCS		 = 	$(addsuffix .c,		\
-				main				\
-				$(addprefix srcs/, 	\
-				check_input			\
-				ft_atol				\
-				ft_parse			\
-				ft_parse_quoted		\
-				ft_parse_int		\
-				init_lst			\
-				operations			\
-				stack_utils			\
-				ft_sort3			\
-				utils				\
-				atob				\
-				btoa				\
-				calculations		\
-				))
+SRCS		 = 	$(addsuffix .c,			\
+				main					\
+				$(addprefix srcs/, 		\
+				$(addprefix parsing_,	\
+				check_input				\
+				ft_parse_int			\
+				ft_parse				\
+				ft_parse_quoted			\
+				init_lst				\
+				)						\
+				$(addprefix stacking_,	\
+				atob					\
+				btoa					\
+				calculations			\
+				ft_sort3				\
+				operations				\
+				sortings				\
+				utils					\
+				)						\
+				))						\
 
 OFILES		= 	$(SRCS:.c=.o)
 

@@ -37,14 +37,16 @@ typedef struct s_stack
 
 // parsing
 int					check_num(char *str, int size);
-int					check_dup(int *tab, int size);
+int					check_dup(long *tab, int size);
 long				ft_atol(const char *nptr);
 t_stack				*init_stack(int ac, char **av);
 t_stack				*ft_parse_int(int ac, char **av);
 t_stack				*ft_parse_quoted(char **av);
-void				list_args(int *tab, t_stack **stack_a, int size);
-void				ft_error_free(int *tab);
+void				list_args(long *tab, t_stack **stack_a, int size);
+void				ft_error_free(long *tab);
 void				ft_error(void);
+void 				free_split_result(char **result);
+int					check_intmax(long *tab, int size);
 
 // node manipulation
 t_stack				*ft_new_node(int content);
@@ -55,8 +57,8 @@ void				ft_free_stack(t_stack **a);
 
 // operations
 void				ft_sa(t_stack **stack_a);
-void				ft_sb(t_stack **b);
-void				ft_ss(t_stack **a, t_stack **b);
+// void				ft_sb(t_stack **b);
+// void				ft_ss(t_stack **a, t_stack **b);
 void				ft_pa(t_stack **a, t_stack **b);
 void				ft_pb(t_stack **a, t_stack **b);
 void				ft_ra(t_stack **a);
@@ -83,9 +85,8 @@ void				bring_a2top(t_stack *current, t_stack **stacka);
 void				bring_b2top(t_stack *current, t_stack **stackb);
 void				init_b(t_stack **a, t_stack **b);
 void				init_cheap_target(t_stack *stack);
-void				printstack(t_stack **stack);
 void				bringToTop1(t_stack **stack, t_stack *top_node, char name);
-void				bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b,
-						t_stack *top_nodeB);
+void				bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB);
+void				optimoves(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB);
 
 #endif

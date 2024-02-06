@@ -15,12 +15,12 @@
 t_stack	*ft_parse_int(int ac, char **av)
 {
 	int		j;
-	int		*tab;
+	long	*tab;
 	t_stack	*stack_a;
 
 	j = 0;
 	stack_a = NULL;
-	tab = (int *)malloc((ac - 1) * sizeof(int));
+	tab = (long *)malloc((ac - 1) * sizeof(long));
 	if (!tab)
 		return (0);
 	while (j < ac && av[j + 1])
@@ -33,10 +33,10 @@ t_stack	*ft_parse_int(int ac, char **av)
 		tab[j] = ft_atol(av[j + 1]);
 		j++;
 	}
-	if (check_dup(tab, ac - 1) != 1)
+	if (check_dup(tab, ac) == 0 || check_intmax(tab, ac) == 0)
 	{
 		ft_error_free(tab);
-		return (stack_a);
+		return (0);
 	}
 	list_args(tab, &stack_a, ac - 1);
 	free(tab);

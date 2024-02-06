@@ -70,3 +70,16 @@ char	**ft_split(char const *s, char c)
 	strings[strindex] = NULL;
 	return (strings);
 }
+
+void free_split_result(char **result)
+{
+	int i;
+	
+	i = 0;
+    while (result[i] != NULL)
+    {
+        free(result[i]);
+		i++;
+    }
+    free(result);
+}
