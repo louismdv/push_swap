@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atob.c                                             :+:      :+:    :+:   */
+/*   stacking_atob.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:01:34 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 17:12:35 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:32:50 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	atob(t_stack **a, t_stack **b)
 {
 	t_stack	*currentA;
-	t_stack	*Atarget;
-	t_stack	*tcheapest;
 
 	if (check_sort(*a) == false)
 	{
@@ -32,24 +30,31 @@ void	atob(t_stack **a, t_stack **b)
 				indexing(b);
 				find_target_nodea(a, b);
 				total_cost(a, stack_len(*a), stack_len(*b));
-				tcheapest = cheapest(a);
-				while (currentA != NULL)
-				{
-					if (currentA->cheapest == true)
-					{
-						Atarget = currentA->target_node;
-						optimoves(a, tcheapest,b, Atarget);
-						// bringToTop2(a, tcheapest, b, Atarget);
-						bringToTop1(a, tcheapest, 'a');
-						bringToTop1(b, Atarget, 'b');
-						ft_pb(a, b);
-						break ;
-					}
-					currentA = currentA->next;
-				}
+				atob_suite(currentA, b, a);
 			}
 		}
 		if (stack_len(*a) == 3)
 			ft_sort3(a);
+	}
+}
+
+void	atob_suite(t_stack *currentA, t_stack **b, t_stack **a)
+{
+	t_stack *tcheapest;
+	t_stack *Atarget;
+
+	tcheapest = cheapest(a);
+	while (currentA != NULL)
+	{
+		if (currentA->cheapest == true)
+		{
+			Atarget = currentA->target_node;
+			bringToTop2(a, tcheapest, b, Atarget);
+			bringToTop1(a, tcheapest, 'a');
+			bringToTop1(b, Atarget, 'b');
+			ft_pb(a, b);
+			break ;
+		}
+		currentA = currentA->next;
 	}
 }

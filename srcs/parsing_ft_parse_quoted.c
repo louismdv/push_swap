@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_quoted.c                                  :+:      :+:    :+:   */
+/*   parsing_ft_parse_quoted.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:58:33 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 19:29:21 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:32:36 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	count_int(char *str)
 	nums = 0;
 	while (str[j])
 	{
-		if (str[j] >= '0' && str[j] <= '9' && (str[j + 1] == ' ' || str[j
-				+ 1] == '\0'))
+		if (str[j] >= '0' && str[j] <= '9' && (str[j + 1] == ' ' 
+			|| str[j + 1] == '\0'))
 			nums++;
 		j++;
 	}
@@ -45,7 +45,8 @@ t_stack	*ft_parse_quoted(char **av)
 	tab = NULL;
 	stack_a = NULL;
 	// check nums + check count ints in av[1]
-	if (check_num(av[1], ft_strlen(av[1])) == 0 || count_int(av[1]) <= 1)
+	if (check_num(av[1], ft_strlen(av[1])) == 0 
+		|| count_int(av[1]) <= 1)
 	{
 		ft_error();
 		return (0);
@@ -65,7 +66,8 @@ t_stack	*ft_parse_quoted(char **av)
 		j++;
 	}
 	free_split_result(av1);
-	if (check_dup(tab, nums) == 0 || check_intmax(tab, nums) == 0) // checking dups
+	if (check_dup(tab, nums) == 0 
+		|| check_intmax(tab, nums) == 0) // checking dups
 	{
 		ft_error_free(tab);
 		return (0);

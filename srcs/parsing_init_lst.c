@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_lst.c                                         :+:      :+:    :+:   */
+/*   parsing_init_lst.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:46:22 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 17:12:12 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:13:56 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	list_args(long *tab, t_stack **stack_a, int size)
 
 t_stack	*ft_new_node(int content)
 {
-	t_stack *newnode;
+	t_stack	*newnode;
 
 	newnode = malloc(sizeof(t_stack));
 	if (!newnode)

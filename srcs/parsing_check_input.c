@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_input.c                                      :+:      :+:    :+:   */
+/*   parsing_check_input.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:35:24 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/05 17:45:28 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:57:00 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	check_dup(long *tab, int size)
 
 	i = 0;
 	j = 0;
-	while (i < size)
+	while (i < size - 1)
 	{
 		j = i + 1;
-		while (j < size)
+		while (j < size - 1)
 		{
 			if (tab[i] == tab[j])
 				return (0);
@@ -50,9 +50,9 @@ int	check_dup(long *tab, int size)
 	return (1);
 }
 
-int check_intmax(long *tab, int size)
+int	check_intmax(long *tab, int size)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < size)

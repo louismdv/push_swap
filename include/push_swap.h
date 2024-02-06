@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 18:33:06 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:30:58 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ t_stack				*ft_parse_quoted(char **av);
 void				list_args(long *tab, t_stack **stack_a, int size);
 void				ft_error_free(long *tab);
 void				ft_error(void);
-void 				free_split_result(char **result);
+void				free_split_result(char **result);
 int					check_intmax(long *tab, int size);
+int					ft_parse_int_checks(int ac, long *tab);
 
 // node manipulation
 t_stack				*ft_new_node(int content);
@@ -80,13 +81,15 @@ int					push_cost_node(t_stack *node, int stacklen);
 int					total_cost(t_stack **a, int stacklenA, int stacklenB);
 t_stack				*cheapest(t_stack **stack);
 void				atob(t_stack **a, t_stack **b);
+void				atob_suite(t_stack *currentA, t_stack **b, t_stack **a);
 void				btoa(t_stack **a, t_stack **b);
 void				bring_a2top(t_stack *current, t_stack **stacka);
 void				bring_b2top(t_stack *current, t_stack **stackb);
 void				init_b(t_stack **a, t_stack **b);
 void				init_cheap_target(t_stack *stack);
 void				bringToTop1(t_stack **stack, t_stack *top_node, char name);
-void				bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB);
-void				optimoves(t_stack **a, t_stack *top_nodeA, t_stack **b, t_stack *top_nodeB);
+void				bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b,
+						t_stack *top_nodeB);
+// int					optipush(t_stack **stack, int stacklenA, int stacklenB);
 
 #endif

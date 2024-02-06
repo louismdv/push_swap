@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculations.c                                     :+:      :+:    :+:   */
+/*   stacking_calculations.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:01:58 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/05 17:13:52 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:31:42 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	find_target_nodea(t_stack **a, t_stack **b)
 	}
 }
 
-
 void	find_target_nodeb(t_stack **a, t_stack **b)
 // closest superior target node -> smallest negative difference
 {
@@ -124,14 +123,49 @@ int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 	int		total_cost;
 	t_stack	*current;
 
+	// int		opti_cost;
 	current = (*stack);
 	total_cost = 0;
 	while (current != NULL)
 	{
 		total_cost = push_cost_node(current, stacklenA)
 			+ push_cost_node(current->target_node, stacklenB);
+		// opti_cost = optipush(stack, stacklenA, stacklenB);
+		// if (total_cost > opti_cost)
+		// 	current->push_cost = opti_cost;
+		// else
 		current->push_cost = total_cost;
 		current = current->next;
 	}
 	return (total_cost);
 }
+
+// int	optipush(t_stack **stack, int stacklenA, int stacklenB)
+// {
+// 	t_stack *node;
+// 	int opti_cost;
+// 	node = *stack;
+// 	int indexA = node->index;
+// 	int indexB = node->target_node->index;
+// 	int belowB = stacklenB - node->target_node->index;
+// 	int belowA = stacklenA - indexA;
+
+// 	opti_cost = 2147483647;
+
+// 	if (indexA > indexB)
+// 	{
+// 		if ((indexA + belowB) > indexA)
+// 			opti_cost = indexA;
+// 		if ((indexB + belowA) < belowB)
+// 			opti_cost = belowB;
+// 	}
+// 	else if (indexA < indexB)
+// 	{
+// 		if ((indexB + belowA) > indexB)
+// 			opti_cost = indexB;
+// 		if ((indexA + belowB) < belowA)
+// 			opti_cost = belowA;
+// 	}
+
+// 	return (2147483647);
+// }

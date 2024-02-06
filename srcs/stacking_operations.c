@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   stacking_operations.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 09:59:09 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 17:11:59 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:20:51 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,8 +188,6 @@ void	ft_rr(t_stack **a, t_stack **b)
 	else
 	{
 		tmp = *a;
-		if (!(*a) || !((*a)->next))
-			return ;
 		*a = ft_lst_last(*a);
 		(*a)->next = tmp;
 		tmp->prev = *a;
@@ -197,8 +195,6 @@ void	ft_rr(t_stack **a, t_stack **b)
 		tmp->next = NULL;
 		(*a)->prev = NULL;
 		tmp = *b;
-		if (!(*b) || !((*b)->next))
-			return ;
 		*b = ft_lst_last(*b);
 		(*b)->next = tmp;
 		tmp->prev = *b;

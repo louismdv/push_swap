@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_int.c                                     :+:      :+:    :+:   */
+/*   parsing_ft_parse_int.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 00:28:50 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 18:09:46 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:32:24 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,19 @@ t_stack	*ft_parse_int(int ac, char **av)
 		tab[j] = ft_atol(av[j + 1]);
 		j++;
 	}
+	if (ft_parse_int_checks(ac, tab) == 0)
+		return (0);
+	list_args(tab, &stack_a, ac - 1);
+	free(tab);
+	return (stack_a);
+}
+
+int	ft_parse_int_checks(int ac, long *tab)
+{
 	if (check_dup(tab, ac) == 0 || check_intmax(tab, ac) == 0)
 	{
 		ft_error_free(tab);
 		return (0);
 	}
-	list_args(tab, &stack_a, ac - 1);
-	free(tab);
-	return (stack_a);
+	return (1);
 }

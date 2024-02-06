@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort3.c                                         :+:      :+:    :+:   */
+/*   stacking_ft_sort3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 14:59:15 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 17:12:14 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:20:01 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@ void	ft_sort3(t_stack **a)
 	value1 = (*a)->value;
 	value2 = (*a)->next->value;
 	value3 = (*a)->next->next->value;
-	//value2 < value1 && ...
 	if (value2 < value3 && value1 < value2 && value1 < value3) // 3 9 10
 		return ;
 	else if (value2 < value3 && value1 < value3 && value1 > value2) // 9 3 10
 		ft_sa(a);
 	else if (value2 < value3 && value1 > value3 && value1 > value2) //10 3 9
 		ft_ra(a);
-	//value2 > value3 && ...
 	else if (value2 > value3 && value1 < value2 && value1 < value3) // 3 10 9
 	{
 		ft_rra(a);

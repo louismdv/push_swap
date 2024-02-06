@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:24:11 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 19:39:59 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:33:56 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,15 @@ char	**ft_split(char const *s, char c)
 	return (strings);
 }
 
-void free_split_result(char **result)
+void	free_split_result(char **result)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-    while (result[i] != NULL)
-    {
-        free(result[i]);
+	while (result[i] != NULL)
+	{
+		free(result[i]);
 		i++;
-    }
-    free(result);
+	}
+	free(result);
 }
