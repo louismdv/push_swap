@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/06 18:30:58 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:55:31 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void				free_split_result(char **result);
 int					check_intmax(long *tab, int size);
 int					ft_parse_int_checks(int ac, long *tab);
 int					ft_parse_quoted_checks(long *tab, int nums);
-long 				*spliting(char **av, int nums);
+long				*spliting(char **av, int nums);
 
 // node manipulation
 t_stack				*ft_new_node(int content);
@@ -70,8 +70,10 @@ void				ft_rr(t_stack **a, t_stack **b);
 void				ft_rra(t_stack **a);
 void				ft_rrb(t_stack **b);
 void				ft_rrr(t_stack **a, t_stack **b);
-t_stack				*valdiffB(t_stack *currentA, int minDiff, t_stack *closestSuperiorNode, t_stack *currentB);
-t_stack				*valdiffA(t_stack *currentA, int maxDiff, t_stack *closestInferiorNode, t_stack *currentB);
+t_stack				*valdiffb(t_stack *currenta, int mindiff,
+						t_stack *closestsup, t_stack *currentb);
+t_stack				*valdiffa(t_stack *currenta, int maxdiff,
+						t_stack *closestinf, t_stack *currentb);
 
 // algorithm
 void				ft_sort3(t_stack **a);
@@ -82,18 +84,15 @@ void				indexing(t_stack **stack);
 void				find_target_nodeb(t_stack **a, t_stack **b);
 void				find_target_nodea(t_stack **s1, t_stack **s2);
 int					push_cost_node(t_stack *node, int stacklen);
-int					total_cost(t_stack **a, int stacklenA, int stacklenB);
+int					total_cost(t_stack **a, int stacklena, int stacklenb);
 t_stack				*cheapest(t_stack **stack);
 void				atob(t_stack **a, t_stack **b);
-void				atob_suite(t_stack *currentA, t_stack **b, t_stack **a);
+void				atob_suite(t_stack *currenta, t_stack **b, t_stack **a);
 void				btoa(t_stack **a, t_stack **b);
-void				bring_a2top(t_stack *current, t_stack **stacka);
-void				bring_b2top(t_stack *current, t_stack **stackb);
 void				init_b(t_stack **a, t_stack **b);
 void				init_cheap_target(t_stack *stack);
-void				bringToTop1(t_stack **stack, t_stack *top_node, char name);
-void				bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b,
-						t_stack *top_nodeB);
-// int					optipush(t_stack **stack, int stacklenA, int stacklenB);
+void				bringtotop1(t_stack **stack, t_stack *top_node, char name);
+void				bringtotop2(t_stack **a, t_stack *top_nodea, t_stack **b,
+						t_stack *top_nodeb);
 
 #endif

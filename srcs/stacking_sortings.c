@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/06 18:22:09 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:58:58 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_b(t_stack **a, t_stack **b)
 		ft_pb(a, b);
 }
 
-void	bringToTop1(t_stack **stack, t_stack *top_node, char name)
+void	bringtotop1(t_stack **stack, t_stack *top_node, char name)
 {
 	while (top_node != *stack)
 	{
@@ -80,49 +80,24 @@ void	bringToTop1(t_stack **stack, t_stack *top_node, char name)
 	}
 }
 
-void	bringToTop2(t_stack **a, t_stack *top_nodeA, t_stack **b,
-		t_stack *top_nodeB)
+void	bringtotop2(t_stack **a, t_stack *top_nodea,
+					t_stack **b, t_stack *top_nodeb)
 {
-	while (*a != top_nodeA && *b != top_nodeB)
+	while (*a != top_nodea && *b != top_nodeb)
 	{
-		if (!top_nodeA->under_median && !top_nodeB->under_median)
+		if (!top_nodea->under_median && !top_nodeb->under_median)
 			ft_rr(a, b);
-		else if (top_nodeA->under_median && top_nodeB->under_median)
+		else if (top_nodea->under_median && top_nodeb->under_median)
 			ft_rrr(a, b);
-		else if (!top_nodeA->under_median && top_nodeB->under_median && top_nodeA->index < top_nodeB->index)
-		{
-			if (top_nodeA->index + (stack_len(*b) - top_nodeB->index) > top_nodeB->index)
-				ft_rr(a, b);
-			else if (top_nodeA->index + (stack_len(*b)-top_nodeB->index) > stack_len(*a)-top_nodeA->index)
-				ft_rrr(a,b);
-			else
-			{
-				ft_ra(a);
-				ft_rrb(b);
-			}
-		}
-		else if (top_nodeA->under_median && !top_nodeB->under_median && top_nodeB->index < top_nodeA->index)
-		{
-			if (top_nodeB->index + (stack_len(*a) - top_nodeA->index) > top_nodeA->index)
-				ft_rr(a, b);
-			else if (top_nodeB->index + (stack_len(*a)-top_nodeA->index) > stack_len(*b)-top_nodeB->index)
-				ft_rrr(a,b);
-			else
-			{
-				ft_rra(a);
-				ft_rb(b);
-			}
-		}
-		else if (!top_nodeA->under_median && top_nodeB->under_median)
+		else if (!top_nodea->under_median && top_nodeb->under_median)
 		{
 			ft_ra(a);
 			ft_rrb(b);
 		}
-		else if (top_nodeA->under_median && !top_nodeB->under_median)
+		else if (top_nodea->under_median && !top_nodeb->under_median)
 		{
 			ft_rra(a);
 			ft_rb(b);
 		}
 	}
 }
-

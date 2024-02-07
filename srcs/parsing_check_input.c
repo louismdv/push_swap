@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:35:24 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/06 16:57:00 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:44:34 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_dup(long *tab, int size)
 
 int	check_intmax(long *tab, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)

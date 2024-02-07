@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:58:33 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/06 18:32:36 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:29:03 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	count_int(char *str)
 	nums = 0;
 	while (str[j])
 	{
-		if (str[j] >= '0' && str[j] <= '9' && (str[j + 1] == ' ' 
-			|| str[j + 1] == '\0'))
+		if (str[j] >= '0' && str[j] <= '9' && (str[j + 1] == ' '
+				|| str[j + 1] == '\0'))
 			nums++;
 		j++;
 	}
@@ -49,8 +49,8 @@ t_stack	*ft_parse_quoted(char **av)
 	}
 	nums = count_int(av[1]);
 	tab = spliting(av, nums);
-	if(ft_parse_quoted_checks(tab, nums) == 0)
-		return(0);
+	if (ft_parse_quoted_checks(tab, nums) == 0)
+		return (0);
 	list_args(tab, &stack_a, nums);
 	free(tab);
 	return (stack_a);
@@ -63,19 +63,19 @@ int	ft_parse_quoted_checks(long *tab, int nums)
 		ft_error_free(tab);
 		return (0);
 	}
-	return(1);
+	return (1);
 }
 
-long *spliting(char **av, int nums)
+long	*spliting(char **av, int nums)
 {
-	char 	**av1;
-	int 	j;
-	long 	*tab;
+	char	**av1;
+	int		j;
+	long	*tab;
 
 	av1 = ft_split(av[1], ' ');
 	tab = (long *)malloc(count_int(av[1]) * sizeof(long));
 	if (!tab)
-		return(0);
+		return (0);
 	j = 0;
 	while (j < nums && av1[j])
 	{
@@ -83,5 +83,5 @@ long *spliting(char **av, int nums)
 		j++;
 	}
 	free_split_result(av1);
-	return(tab);
+	return (tab);
 }

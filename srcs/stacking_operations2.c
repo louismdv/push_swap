@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 00:15:04 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/07 00:18:31 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:31:22 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,28 +79,28 @@ void	ft_rrb(t_stack **b)
 // rrr: rra and rrb at the same time.
 void	ft_rrr(t_stack **a, t_stack **b)
 {
-	t_stack	*newfirstA;
-	t_stack	*lastA;
-	t_stack	*newfirstB;
-	t_stack	*lastB;
+	t_stack	*newfirsta;
+	t_stack	*lasta;
+	t_stack	*newfirstb;
+	t_stack	*lastb;
 
 	if (!*a || !(*a)->next)
 		return ;
-	lastA = ft_lst_last(*a)->prev;
-	newfirstA = ft_lst_last(*a);
-	newfirstA->next = *a;
-	(*a)->prev = newfirstA;
-	newfirstA->prev = NULL;
-	lastA->next = NULL;
-	*a = newfirstA;
+	lasta = ft_lst_last(*a)->prev;
+	newfirsta = ft_lst_last(*a);
+	newfirsta->next = *a;
+	(*a)->prev = newfirsta;
+	newfirsta->prev = NULL;
+	lasta->next = NULL;
+	*a = newfirsta;
 	if (!*b || !(*b)->next)
 		return ;
-	lastB = ft_lst_last(*b)->prev;
-	newfirstB = ft_lst_last(*b);
-	newfirstB->next = *b;
-	(*b)->prev = newfirstB;
-	newfirstB->prev = NULL;
-	lastB->next = NULL;
-	*b = newfirstB;
+	lastb = ft_lst_last(*b)->prev;
+	newfirstb = ft_lst_last(*b);
+	newfirstb->next = *b;
+	(*b)->prev = newfirstb;
+	newfirstb->prev = NULL;
+	lastb->next = NULL;
+	*b = newfirstb;
 	write(1, "rrr\n", 4);
 }

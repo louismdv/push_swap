@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:01:34 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/06 18:32:50 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:50:52 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	atob(t_stack **a, t_stack **b)
 {
-	t_stack	*currentA;
+	t_stack	*currenta;
 
 	if (check_sort(*a) == false)
 	{
-		currentA = *a;
+		currenta = *a;
 		while (stack_len(*a) > 3)
 		{
-			if (currentA != NULL)
+			if (currenta != NULL)
 			{
-				currentA = *a;
+				currenta = *a;
 				init_cheap_target(*a);
 				init_cheap_target(*b);
 				indexing(a);
 				indexing(b);
 				find_target_nodea(a, b);
 				total_cost(a, stack_len(*a), stack_len(*b));
-				atob_suite(currentA, b, a);
+				atob_suite(currenta, b, a);
 			}
 		}
 		if (stack_len(*a) == 3)
@@ -38,23 +38,23 @@ void	atob(t_stack **a, t_stack **b)
 	}
 }
 
-void	atob_suite(t_stack *currentA, t_stack **b, t_stack **a)
+void	atob_suite(t_stack *currenta, t_stack **b, t_stack **a)
 {
-	t_stack *tcheapest;
-	t_stack *Atarget;
+	t_stack	*tcheapest;
+	t_stack	*atarget;
 
 	tcheapest = cheapest(a);
-	while (currentA != NULL)
+	while (currenta != NULL)
 	{
-		if (currentA->cheapest == true)
+		if (currenta->cheapest == true)
 		{
-			Atarget = currentA->target_node;
-			bringToTop2(a, tcheapest, b, Atarget);
-			bringToTop1(a, tcheapest, 'a');
-			bringToTop1(b, Atarget, 'b');
+			atarget = currenta->target_node;
+			bringtotop2(a, tcheapest, b, atarget);
+			bringtotop1(a, tcheapest, 'a');
+			bringtotop1(b, atarget, 'b');
 			ft_pb(a, b);
 			break ;
 		}
-		currentA = currentA->next;
+		currenta = currenta->next;
 	}
 }

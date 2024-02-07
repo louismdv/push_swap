@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   stacking_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:53:53 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 17:12:08 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:29:50 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,6 @@ int	stack_len(t_stack *stack)
 		i++;
 	}
 	return (i);
-}
-
-// checks if stack is sort
-// returns 1 if stack is sort, 0 if not
-bool	check_sort(t_stack *stack) // check crescendo
-{
-	if (!stack)
-		return (false);
-	while (stack->next != NULL)
-	{
-		if (stack->value < stack->next->value)
-			stack = stack->next;
-		else
-			return (false);
-	}
-	return (true);
 }
 
 // free memory locations of each node in stack

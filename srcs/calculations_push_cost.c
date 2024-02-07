@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 00:12:35 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/07 00:13:05 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:25:47 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,25 @@ int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 	int		total_cost;
 	t_stack	*current;
 
-	// int		opti_cost;
 	current = (*stack);
 	total_cost = 0;
 	while (current != NULL)
 	{
 		total_cost = push_cost_node(current, stacklenA)
 			+ push_cost_node(current->target_node, stacklenB);
-		// opti_cost = optipush(stack, stacklenA, stacklenB);
-		// if (total_cost > opti_cost)
-		// 	current->push_cost = opti_cost;
-		// else
 		current->push_cost = total_cost;
 		current = current->next;
 	}
 	return (total_cost);
 }
-
+	// opti_cost = optipush(stack, stacklenA, stacklenB);
+	// if (total_cost > opti_cost)
+	// 	current->push_cost = opti_cost;
+	// else		// opti_cost = optipush(stack, stacklenA, stacklenB);
+	// if (total_cost > opti_cost)
+	// 	current->push_cost = opti_cost;
+	// else
+	//
 // int	optipush(t_stack **stack, int stacklenA, int stacklenB)
 // {
 // 	t_stack *node;
@@ -56,9 +58,9 @@ int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 // 	int indexB = node->target_node->index;
 // 	int belowB = stacklenB - node->target_node->index;
 // 	int belowA = stacklenA - indexA;
-
+//
 // 	opti_cost = 2147483647;
-
+//
 // 	if (indexA > indexB)
 // 	{
 // 		if ((indexA + belowB) > indexA)
@@ -73,6 +75,6 @@ int	total_cost(t_stack **stack, int stacklenA, int stacklenB)
 // 		if ((indexA + belowB) < belowA)
 // 			opti_cost = belowA;
 // 	}
-
+//
 // 	return (2147483647);
 // }

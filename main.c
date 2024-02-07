@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:52:18 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 17:14:18 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:51:34 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int ac, char **av)
 				init_b(&a, &b);
 			atob(&a, &b);
 			btoa(&a, &b);
-			bringToTop1(&a, ft_find_min(a), 'a');
+			bringtotop1(&a, ft_find_min(a), 'a');
 		}
 	}
 	ft_free_stack(&a);

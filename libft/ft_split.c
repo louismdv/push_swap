@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:24:11 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/06 18:33:56 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:53:46 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	**ft_split(char const *s, char c)
 		}
 		strings[strindex++] = ft_strndup((char *)s + i - sublen, sublen);
 	}
-	strings[strindex] = NULL;
 	return (strings);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*   parsing_ft_parse.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:48:23 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/05 18:33:11 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 00:59:56 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_stack	*init_stack(int ac, char **av)
 	t_stack	*stack_a;
 
 	stack_a = NULL;
-	if (ac < 2 || (ac == 2 && ft_strlen(av[1]) == 0)) // ./push_swap ""
+	if (ac < 2 || (ac == 2 && ft_strlen(av[1]) == 0))
 	{
 		ft_error();
 		return (0);
@@ -33,11 +33,13 @@ t_stack	*init_stack(int ac, char **av)
 		stack_a = ft_parse_int(ac, av);
 	return (stack_a);
 }
+
 void	ft_error_free(long *tab)
 {
 	free(tab);
 	printf("Error\n");
 }
+
 void	ft_error(void)
 {
 	printf("Error\n");
