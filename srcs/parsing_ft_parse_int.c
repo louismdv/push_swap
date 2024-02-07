@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 00:28:50 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/06 18:32:24 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:23:11 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ t_stack	*ft_parse_int(int ac, char **av)
 	stack_a = NULL;
 	tab = (long *)malloc((ac - 1) * sizeof(long));
 	if (!tab)
+	{
+		ft_error_free(tab);
 		return (0);
+	}
 	while (j < ac && av[j + 1])
 	{
-		if (check_num(av[j + 1], ft_strlen(av[j + 1])) != 1)
+		if (check_num_int(av[j + 1], ft_strlen(av[j + 1])) == 0)
 		{
 			ft_error_free(tab);
 			return (0);
@@ -42,7 +45,7 @@ t_stack	*ft_parse_int(int ac, char **av)
 
 int	ft_parse_int_checks(int ac, long *tab)
 {
-	if (check_dup(tab, ac) == 0 || check_intmax(tab, ac) == 0)
+	if (check_dup_int(tab, ac) == 0 || check_intmax(tab, ac) == 0)
 	{
 		ft_error_free(tab);
 		return (0);

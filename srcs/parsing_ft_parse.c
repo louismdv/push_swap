@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:48:23 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/07 00:59:56 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:33:05 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ t_stack	*init_stack(int ac, char **av)
 void	ft_error_free(long *tab)
 {
 	free(tab);
-	printf("Error\n");
+	ft_putstr_fd("Error\n", 2);
 }
 
 void	ft_error(void)
 {
-	printf("Error\n");
+	ft_putstr_fd("Error\n", 2);
 }
 
 // error

@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:46:22 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/06 18:13:56 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:42:38 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,28 @@ long	ft_atol(const char *nptr)
 
 // This func creates a newnode with the content of tab[i]
 // and adds it to the end of the stack_a list.
-void	list_args(long *tab, t_stack **stack_a, int size)
+void	list_args(long *tab, t_stack **a, int size)
 {
 	long	i;
 
 	i = 0;
 	while (i < size)
 	{
-		add_node_back(stack_a, ft_new_node(tab[i]));
+		add_node_back(a, ft_new_node(tab[i], a));
 		i++;
 	}
 }
 
-t_stack	*ft_new_node(int content)
+t_stack	*ft_new_node(int content, t_stack **a)
 {
 	t_stack	*newnode;
 
 	newnode = malloc(sizeof(t_stack));
 	if (!newnode)
-		return (NULL);
+	{
+		ft_free_stack(a);
+		exit(0);
+	}
 	newnode->value = content;
 	newnode->prev = NULL;
 	newnode->next = NULL;

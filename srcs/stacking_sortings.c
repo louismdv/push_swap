@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/07 00:58:58 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:18:50 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,3 +101,4 @@ void	bringtotop2(t_stack **a, t_stack *top_nodea,
 		}
 	}
 }
+

@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:24:11 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/07 00:53:46 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:59:43 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	free_split_result(char **result)
 	int	i;
 
 	i = 0;
-	while (result[i] != NULL)
+	while (result[i])
 	{
 		free(result[i]);
 		i++;

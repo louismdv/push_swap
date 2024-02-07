@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/07 00:55:31 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:59:11 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ typedef struct s_stack
 }					t_stack;
 
 // parsing
-int					check_num(char *str, int size);
-int					check_dup(long *tab, int size);
+int					check_num_int(char *str, int size);
+int					check_num_quoted(char *str, int size);
+int					check_dup_int(long *tab, int size);
+int					check_dup_quoted(long *tab, int nums);
 long				ft_atol(const char *nptr);
 t_stack				*init_stack(int ac, char **av);
 t_stack				*ft_parse_int(int ac, char **av);
@@ -52,7 +54,7 @@ int					ft_parse_quoted_checks(long *tab, int nums);
 long				*spliting(char **av, int nums);
 
 // node manipulation
-t_stack				*ft_new_node(int content);
+t_stack				*ft_new_node(int content, t_stack **a);
 t_stack				*ft_lst_last(t_stack *node);
 int					stack_len(t_stack *stack);
 void				add_node_back(t_stack **stack, t_stack *newnode);
