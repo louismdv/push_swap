@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:24:11 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/07 20:59:43 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:55:42 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	strindex = 0;
-	if (!s)
-		return (NULL);
 	strings = malloc((wordcount(s, c) + 1) * sizeof(char *));
 	if (!strings)
 		return (NULL);
@@ -67,6 +65,7 @@ char	**ft_split(char const *s, char c)
 		}
 		strings[strindex++] = ft_strndup((char *)s + i - sublen, sublen);
 	}
+	strings[strindex] = NULL;
 	return (strings);
 }
 

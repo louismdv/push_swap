@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:35:24 by lmerveil          #+#    #+#             */
-/*   Updated: 2024/02/07 20:59:28 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:42:32 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_num_int(char *str, int size)
 	j = 0;
 	while (str[j] && j < size)
 	{
-		if (str[j] == '-' || str[j] == '+')
+		if ((str[j] == '-' || str[j] == '+') && ft_isdigit(str[j + 1]))
 			j++;
 		else if (ft_isdigit(str[j]))
 			j++;
@@ -36,8 +36,11 @@ int	check_num_quoted(char *str, int size)
 	j = 0;
 	while (str[j] && j < size)
 	{
-		if (str[j] == '-' || str[j] == '+' || str[j] == ' ' || (str[j] == '0'
-				&& str[j + 1] == '0'))
+		if ((str[j] == '-' || str[j] == '+') && ft_isdigit(str[j + 1]))
+			j++;
+		if (str[j] == ' ' && (ft_isdigit(str[j + 1]) || str[j + 1] == '-'
+				|| str[j + 1] == '+' || str[j + 1] == ' '
+				|| str[j + 1] == '\0'))
 			j++;
 		else if (ft_isdigit(str[j]))
 			j++;
@@ -67,6 +70,7 @@ int	check_dup_quoted(long *tab, int nums)
 	}
 	return (1);
 }
+
 int	check_dup_int(long *tab, int nums)
 {
 	int	i;
@@ -74,10 +78,10 @@ int	check_dup_int(long *tab, int nums)
 
 	i = 0;
 	j = 0;
-	while (i < nums)
+	while (i < nums - 1)
 	{
 		j = i + 1;
-		while (j < nums)
+		while (j < nums - 1)
 		{
 			if (tab[i] == tab[j])
 				return (0);
@@ -93,9 +97,9 @@ int	check_intmax(long *tab, int size)
 	int	i;
 
 	i = 0;
-	while (i < size - 1)
+	while (i < size)
 	{
-		if (tab[i] > 2147483647 || tab[i] < -2147483647)
+		if (tab[i] > 2147483647 || tab[i] < -2147483648)
 			return (0);
 		i++;
 	}

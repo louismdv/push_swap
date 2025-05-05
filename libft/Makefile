@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
+#    By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 11:33:24 by louismdv          #+#    #+#              #
-#    Updated: 2024/01/13 23:13:51 by louismdv         ###   ########.fr        #
+#    Updated: 2024/02/08 15:25:48 by lmerveil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft.a
 CC = cc
-CFLAGS	=	-Wall -Wextra -Werror -I.
+CFLAGS	=	-Wall -Wextra -Werror -I. -g3
 
 SOURCES = ft_atoi.c\
 		 ft_strrchr.c\

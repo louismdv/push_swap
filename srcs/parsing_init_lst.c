@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:46:22 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/07 19:42:38 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:41:31 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ long	ft_atol(const char *nptr)
 	{
 		nb = nb * 10;
 		nb = nb + (nptr[i] - '0');
+		if (i > 11)
+			return (21474836400);
 		i++;
 	}
 	nb = nb * sign;

@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:52:27 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/07 20:59:11 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:47:11 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void				ft_error_free(long *tab);
 void				ft_error(void);
 void				free_split_result(char **result);
 int					check_intmax(long *tab, int size);
-int					ft_parse_int_checks(int ac, long *tab);
+void				ft_parse_int_checks(int ac, long *tab);
 int					ft_parse_quoted_checks(long *tab, int nums);
 long				*spliting(char **av, int nums);
 

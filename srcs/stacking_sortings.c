@@ -6,7 +6,7 @@
 /*   By: lmerveil <lmerveil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:15:42 by louismdv          #+#    #+#             */
-/*   Updated: 2024/02/07 16:18:50 by lmerveil         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:58:25 by lmerveil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	bringtotop1(t_stack **stack, t_stack *top_node, char name)
 	}
 }
 
-void	bringtotop2(t_stack **a, t_stack *top_nodea,
-					t_stack **b, t_stack *top_nodeb)
+void	bringtotop2(t_stack **a, t_stack *top_nodea, t_stack **b,
+		t_stack *top_nodeb)
 {
 	while (*a != top_nodea && *b != top_nodeb)
 	{
@@ -101,4 +101,3 @@ void	bringtotop2(t_stack **a, t_stack *top_nodea,
 		}
 	}
 }
-
